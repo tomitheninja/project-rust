@@ -1,4 +1,3 @@
-/target
-**/*.rs.bk
-src/**
-!src/**/*.rs
+*
+!.gitignore
+!*.rs
