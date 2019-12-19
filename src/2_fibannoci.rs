@@ -8,17 +8,32 @@
 // By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 // find the sum of the even-valued terms.
 
-fn main () {
-    let mut a = 0;
-    let mut b = 1;
-    let mut sum = 0;
-    while b <= 4_000_000 {
-        let next = a + b;
-        a = b;
-        b = next;
-        if b % 2 == 0 {
-            sum += b;
-        };
+struct Fibonacci {
+    n1: u32,
+    n2: u32,
+}
+
+impl Fibonacci {
+    fn new () -> Fibonacci {
+        Fibonacci { n1: 0, n2: 1 }
     }
+}
+
+impl Iterator for Fibonacci {
+    type Item = u32;
+    fn next (&mut self) -> Option<u32> {
+        let new_value = self.n1 + self.n2;
+        self.n1 = self.n2;
+        self.n2 = new_value;
+        Some(new_value)
+    }
+}
+
+
+fn main () {
+    let sum: u32 = Fibonacci::new()
+        .take_while(|&x| x <= 4_000_000)
+        .filter(|&x| x % 2 == 0)
+        .sum();
     println!("{}", sum);
 }
