@@ -53,6 +53,7 @@ impl Iterator for CollatzSequence {
 
 fn main () {
     let result = (1..1_000_000)
-        .max_by_key(|initial_value| CollatzSequence::new(*initial_value).count());
-    println!("{:?}", result);
+        .max_by_key(|initial_value| CollatzSequence::new(*initial_value).count())
+        .unwrap();
+    println!("{}", result);
 }

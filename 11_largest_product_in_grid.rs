@@ -25,19 +25,19 @@ fn main () {
                 product_downright *= &arr[p1 + i][p2 + i];
             }
             if product_right > largest_product {
-                println!("x: [{:2},{:2}] +{}", p1, p2, product_right - largest_product);
+                // println!("x: [{:2},{:2}] +{}", p1, p2, product_right - largest_product);
                 largest_product = product_right;
             }
             if product_down > largest_product {
-                println!("y: [{:2},{:2}] +{}", p1, p2, product_down - largest_product);
+                // println!("y: [{:2},{:2}] +{}", p1, p2, product_down - largest_product);
                 largest_product = product_down;
             }
             if product_upright > largest_product {
-                println!("/: [{:2},{:2}] +{}", p1, p2, product_upright - largest_product);
+                // println!("/: [{:2},{:2}] +{}", p1, p2, product_upright - largest_product);
                 largest_product = product_upright;
             }
             if product_downright > largest_product {
-                println!("\\: [{:2},{:2}] +{}", p1, p2, product_downright - largest_product);
+                // println!("\\: [{:2},{:2}] +{}", p1, p2, product_downright - largest_product);
                 largest_product = product_downright;
             }
         }

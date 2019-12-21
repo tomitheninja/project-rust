@@ -79,7 +79,7 @@ fn calculate_sum_of_children (current_line: &Vec<TriangleItem>, children_line: &
     }
     // Solve
     for i in 0..result.len() {
-        // It's children are : children[i], and if exists children[i + 1]
+        // It's children are: Some(children[i]), Option(children[i + 1])
         let slice_last_index = std::cmp::min(children_line.len() - 1, i + 1);
         
         let maybe_best_child = children_line[i..=slice_last_index].iter()

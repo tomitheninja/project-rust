@@ -16,7 +16,7 @@ fn run_rust(n: u64) {
     let square_sum_of_numbers = sum_of_numbers * sum_of_numbers;
 
     println!(
-        "{}) {} - {} = {}",
+        "with loops: {}) {} - {} = {}",
         n,
         square_sum_of_numbers,
         sum_of_square_numbers,
@@ -30,7 +30,7 @@ fn run_math(n: u64) {
     let square_sum_of_numbers = sum_of_numbers * sum_of_numbers;
 
     println!(
-        "{}) {} - {} = {}",
+        "with math: {}) {} - {} = {}",
         n,
         square_sum_of_numbers,
         sum_of_square_numbers,
@@ -40,6 +40,6 @@ fn run_math(n: u64) {
 
 fn main() {
     let n = 100;
-    let result = run_rust(n);
-    let result = run_math(n);
+    run_rust(n);
+    run_math(n);
 }

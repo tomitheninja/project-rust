@@ -9,16 +9,17 @@ fn smallest_factor(n: u64) -> u64 {
         1 => 1,
         _ => (2..)
             .filter(|&x| n % x == 0)
-            .take(1)
-            .sum() // get first
+            .nth(0).unwrap()
     }
 }
 
 fn main() {
     let mut n = 600851475143;
+    let mut latest_factor = 0;
     while n > 1 {
-        let factor = smallest_factor(n);
-        n /= factor;
-        println!("{}", factor);
+        latest_factor = smallest_factor(n);
+        n /= latest_factor;
     };
+    // smallest_factor()'s last output is the largest one 
+    println!("{}", latest_factor);
 }

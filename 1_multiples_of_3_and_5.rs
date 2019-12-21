@@ -8,9 +8,9 @@
 // Find the sum of all the multiples of 3 or 5 below 1000.
 
 fn main () {
-    let result: u32 = (1..1000)
+    let result = (1..1000)
         .filter(|&x| x % 3 == 0 || x % 5 == 0)
-        .sum();
+        .sum::<u32>();
     println!("{}", result);
 }
 

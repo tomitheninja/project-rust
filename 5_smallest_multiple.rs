@@ -58,7 +58,6 @@ fn get_product_of_factors(factor_amount: Vec<u32>) -> u64 {
         let amount = factor_amount[i - 1];
         let tmp = factor.pow(amount);
         if tmp > 1 {
-            // println!("{:02}^{:2} = {:2}", i, factor_amount[i - 1], tmp);
             product *= tmp as u64;
         }
     }

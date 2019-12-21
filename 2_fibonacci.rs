@@ -31,9 +31,9 @@ impl Iterator for Fibonacci {
 
 
 fn main () {
-    let sum: u32 = Fibonacci::new()
+    let sum = Fibonacci::new()
         .take_while(|&x| x <= 4_000_000)
         .filter(|&x| x % 2 == 0)
-        .sum();
+        .sum::<u32>();
     println!("{}", sum);
 }

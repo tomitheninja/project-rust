@@ -35,7 +35,7 @@ impl TriangleNumber {
     fn new() -> TriangleNumber {
         TriangleNumber {
             value: 1,
-            sum: 0,
+            sum: 1,
         }
     }
 }
@@ -43,8 +43,8 @@ impl TriangleNumber {
 impl Iterator for TriangleNumber {
     type Item = u64;
     fn next (&mut self) -> Option<u64> {
-        self.sum += self.value;
         self.value += 1;
+        self.sum += self.value;
         Some(self.sum)
     }
 }
@@ -53,6 +53,6 @@ impl Iterator for TriangleNumber {
 fn main () {
     let result: u64 = TriangleNumber::new()
         .filter(|&x| count_dividers(x) >= 500)
-        .take(1).sum();
+        .nth(0).unwrap();
     println!("{}", result);
 }
