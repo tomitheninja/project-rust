@@ -4,7 +4,7 @@
 
 // What is the largest prime factor of the number 600851475143 ?
 
-fn smallest_factor(n: u64) -> u64 {
+fn get_smallest_factor(n: u64) -> u64 {
     match n {
         1 => 1,
         _ => (2..)
@@ -13,13 +13,20 @@ fn smallest_factor(n: u64) -> u64 {
     }
 }
 
+fn get_largest_prime_factor (n: u64) -> u64 {
+    let mut remaining = n;
+    let mut latest_factor = 1;
+    while remaining > 1 {
+        latest_factor = get_smallest_factor(remaining);
+        remaining /= latest_factor;
+    }
+    latest_factor
+}
+
 fn main() {
-    let mut n = 600851475143;
-    let mut latest_factor = 0;
-    while n > 1 {
-        latest_factor = smallest_factor(n);
-        n /= latest_factor;
-    };
+    let result = get_largest_prime_factor(600851475143);
     // smallest_factor()'s last output is the largest one 
-    println!("{}", latest_factor);
+    println!("{}", result);
+
+    assert_eq!(result, 6857);
 }

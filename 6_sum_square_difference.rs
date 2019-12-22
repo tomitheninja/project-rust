@@ -11,35 +11,45 @@
 // Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 
 fn run_rust(n: u64) {
-    let sum_of_square_numbers: u64 = (1..=n).map(|x| x * x).sum();
+    let sum_of_numbers_squared: u64 = (1..=n).map(|x| x * x).sum();
     let sum_of_numbers: u64 = (1..=n).sum();
-    let square_sum_of_numbers = sum_of_numbers * sum_of_numbers;
+    let square_of_sum_of_numbers = sum_of_numbers * sum_of_numbers;
+    let diff = square_of_sum_of_numbers - sum_of_numbers_squared;
+
+    assert_eq!(square_of_sum_of_numbers, 25502500);
+    assert_eq!(sum_of_numbers_squared, 338350);
+    assert_eq!(diff, 25164150);
 
     println!(
         "with loops: {}) {} - {} = {}",
         n,
-        square_sum_of_numbers,
-        sum_of_square_numbers,
-        square_sum_of_numbers - sum_of_square_numbers
+        square_of_sum_of_numbers,
+        sum_of_numbers_squared,
+        diff,
     );
 }
 
 fn run_math(n: u64) {
-    let sum_of_square_numbers = n * (n + 1) * (2 * n + 1) / 6;
+    let sum_of_numbers_squared = n * (n + 1) * (2 * n + 1) / 6;
     let sum_of_numbers = n * (n + 1) / 2;
-    let square_sum_of_numbers = sum_of_numbers * sum_of_numbers;
+    let square_of_sum_of_numbers = sum_of_numbers * sum_of_numbers;
+    let diff = square_of_sum_of_numbers - sum_of_numbers_squared;
+
+    assert_eq!(square_of_sum_of_numbers, 25502500);
+    assert_eq!(sum_of_numbers_squared, 338350);
+    assert_eq!(diff, 25164150);
 
     println!(
         "with math: {}) {} - {} = {}",
         n,
-        square_sum_of_numbers,
-        sum_of_square_numbers,
-        square_sum_of_numbers - sum_of_square_numbers
+        square_of_sum_of_numbers,
+        sum_of_numbers_squared,
+        diff,
     );
 }
 
 fn main() {
-    let n = 100;
-    run_rust(n);
-    run_math(n);
+    const N: u64 = 100;
+    run_rust(N);
+    run_math(N);
 }

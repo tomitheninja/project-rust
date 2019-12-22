@@ -13,14 +13,14 @@
 
 // Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 
-fn sum_of_unique(n1: u32, n2: u32) -> u32 {
+fn sum_of_unique_params(n1: u32, n2: u32) -> u32 {
     if n1 == n2 { n1 } else { n1 + n2 }
 }
 
 fn sum_of_divisors(n: u32) -> u32 {
     (2..=(n as f64).sqrt() as u32)
         .filter(|&i| n % i == 0)
-        .fold(1, |sum, div| sum + sum_of_unique(div, n / div))
+        .fold(1, |sum, div| sum + sum_of_unique_params(div, n / div))
 }
 
 fn get_abundant_numbers_below_limit(limit: u32) -> Vec<u32> {
@@ -57,4 +57,6 @@ fn main () {
         .sum::<u32>();
 
     println!("{}", result);
+
+    assert_eq!(result, 4179871);
 }

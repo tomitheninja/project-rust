@@ -35,7 +35,8 @@ const HUNDRED: usize = 7;
 const HUNDRED_AND: usize = HUNDRED + 3; // x*100 and
 const THOUSAND: usize = 8; // 1000
 
-
+/// Length of the spelled number
+/// 
 /// DOES NOT WORK WITH 0
 fn length(n: usize) -> usize {
     match n {
@@ -75,5 +76,8 @@ fn main () {
     let result = (1..=1000)
         .map(|i| length(i))
         .sum::<usize>();
+
     println!("{}", result);
+
+    assert_eq!(result, 21124);
 }

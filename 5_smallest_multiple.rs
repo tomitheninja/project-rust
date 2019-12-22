@@ -7,7 +7,9 @@
 fn smallest_factor(n: u32) -> u32 {
     match n {
         1 => 1,
-        _ => (2..).filter(|&x| n % x == 0).take(1).sum(), // get first
+        _ => (2..)
+            .filter(|&x| n % x == 0)
+            .nth(0).unwrap()
     }
 }
 
@@ -15,17 +17,14 @@ fn smallest_factor(n: u32) -> u32 {
 ///
 /// Example (range: 4)
 /// - count of **1**: 1 - *a natural number (there can be infinity many in a number)*
-/// - count of **2**: 2 - *there are 1 in '2' and 2 in '4'*
+/// - count of **2**: 2 - *1 in '2', 2 in '4'*
 /// - count of **3**: 1 - *in '3'*
-/// - count of **4**: 0 - *since it is 2x2*
+/// - count of **4**: 0 - *since it is counted 2x2*
 fn get_largest_factors_in_range(len: usize) -> Vec<u32> {
-    let mut largest_factors = {
-        let mut vec_with_n_zeros = vec![0; len];
-        vec_with_n_zeros[0] = 1;
-        vec_with_n_zeros
-    };
+    let mut largest_factors = vec![0; len];
+    largest_factors[0] = 1;
 
-    for n in 2..=largest_factors.len() {
+    for n in 2..=len {
         let mut num = n as u32;
         let mut prev_factor = 1;
         let mut prev_factor_amount = 0;
@@ -69,4 +68,6 @@ fn main() {
     let factors = get_largest_factors_in_range(n);
     let result = get_product_of_factors(factors);
     println!("{}", result);
+
+    assert_eq!(result, 232792560);
 }

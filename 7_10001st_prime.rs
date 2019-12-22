@@ -12,8 +12,8 @@ fn get_prime_table(n: usize) -> Vec<bool> {
 
     for step in 2..n {
         if !v[step] {
-            continue;
-        } // Already false
+            continue;  // Skip if already false
+        }
         for factor in (2 * step..n).step_by(step) {
             v[factor] = false;
         }
@@ -22,15 +22,14 @@ fn get_prime_table(n: usize) -> Vec<bool> {
 }
 
 fn main() {
-    let x = get_prime_table(999999);
-    let mut num_found_remaining = 10001;
-    for i in 0..x.len() {
-        if x[i] {
-            num_found_remaining -= 1;
-            if num_found_remaining == 0 {
-                println!("{} ", i);
-                break;
-            }
-        }
-    }
+    const N_TH: usize = 10_001;
+    let is_prime = get_prime_table(999999);
+
+    let result = (0..x.len())
+        .filter(|i| is_prime[*i])
+        .nth(N_TH - 1).unwrap();
+    
+    println!("{}", result);
+
+    assert_eq!(result, 104743);
 }

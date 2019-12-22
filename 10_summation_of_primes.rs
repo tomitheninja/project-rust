@@ -11,9 +11,9 @@ fn get_prime_table(n: usize) -> Vec<bool> {
     v[1] = false;
 
     for step in 2..n {
-        if !v[step] {
+        if !v[step] { // Already false
             continue;
-        } // Already false
+        }
         for factor in (2 * step..n).step_by(step) {
             v[factor] = false;
         }
@@ -22,14 +22,15 @@ fn get_prime_table(n: usize) -> Vec<bool> {
 }
 
 fn main () {
-    let is_prime = get_prime_table(2_000_000);
+    const LENGTH: usize = 2_000_000;
+    let is_prime = get_prime_table(LENGTH);
 
-    let mut sum: usize = 0;
-    for prime in 0..is_prime.len() {
-        if is_prime[prime] {
-            sum += prime;
-        }
-    }
+    let result = (0..LENGTH)
+        .filter(|i| is_prime[*i])
+        .map(|prime| prime as u64)
+        .sum::<u64>();
 
-    println!("{}", sum);
+    println!("{}", result);
+
+    assert_eq!(result, 142913828922);
 }

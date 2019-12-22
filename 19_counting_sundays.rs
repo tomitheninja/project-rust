@@ -151,11 +151,14 @@ impl Iterator for Date {
 }
 
 fn main () {
-    let it = Date::new()
+    let result = Date::new()
         .skip_while(|d| d.year < 1901)
         .take_while(|d| d.year < 2001)
         .filter(|d| d.day == 1)
-        .filter(|d| d.day_of_week == DayOfWeek::Sunday);
+        .filter(|d| d.day_of_week == DayOfWeek::Sunday)
+        .count();
 
-    println!("{}", it.count());
+    println!("{}", result);
+
+    assert_eq!(result, 171);
 }

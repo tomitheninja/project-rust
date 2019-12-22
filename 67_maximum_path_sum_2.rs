@@ -11,7 +11,99 @@
 
 // NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
-fn get_triangle () -> Vec<Vec<i32>> {
+
+#[derive(Clone)]
+struct TriangleItem {
+    value: u32,
+    sum_of_children: u32
+}
+
+impl TriangleItem {
+
+    fn new (value: u32) -> TriangleItem { TriangleItem { value, sum_of_children: 0 } }
+
+    fn sum (&self) -> u32 { self.value + self.sum_of_children }
+
+}
+
+fn parse_triangle_line (triangle_line: &Vec<u32>) -> Vec<TriangleItem> {
+    triangle_line.iter()
+        .map(|&value| TriangleItem::new(value) )
+        .collect()
+}
+
+fn parse_triangle (triangle: &Vec<Vec<u32>>) -> Vec<Vec<TriangleItem>> {
+    let mut result: Vec<Vec<TriangleItem>> = Vec::with_capacity(triangle.capacity());
+
+    for line_index in (0..triangle.len()).rev() {
+        let parsed_line = parse_triangle_line(&triangle[line_index]);
+        result.push(parsed_line);
+    }
+
+    result
+}
+
+fn calculate_sum_of_children (current_line: &Vec<TriangleItem>, children_line: &Vec<TriangleItem>) -> Vec<TriangleItem> {
+    use std::cmp::min;
+
+    // Copy current_line to result
+    let mut result = Vec::with_capacity(current_line.len());
+    for i in 0..current_line.len() {
+        result.push(current_line[i].clone());
+    }
+    // Solve
+    for i in 0..result.len() {
+        // It's children are: Some(children[i]), Option(children[i + 1])
+        let slice_last_index = min(children_line.len() - 1, i + 1);
+        
+        let sum_of_children = children_line[i..=slice_last_index].iter()
+            .max_by_key(|&child| child.sum())
+            .unwrap()
+            .sum();
+
+        result[i].sum_of_children = sum_of_children;
+    }
+    result
+}
+
+fn get_first_line (v: &Vec<Vec<TriangleItem>>) -> Vec<TriangleItem> {
+    let first_line = &v[0];
+    let mut result: Vec<TriangleItem> = Vec::with_capacity(first_line.len());
+    for x in first_line {
+        result.push(x.clone());
+    }
+    result
+}
+
+// fn print_result (v: &Vec<Vec<TriangleItem>>) {
+//     for line in v.iter().rev() {
+//         for item in line {
+//             print!("({:3}|{:3}|{:4}) ", item.value, item.sum_of_children, item.sum());
+//         }
+//         print!("\n");
+//     }
+//     print!("\n\n");
+// }
+
+fn main () {
+    let parsed_triangle = parse_triangle(&get_triangle());
+    let mut results: Vec<Vec<TriangleItem>> = Vec::with_capacity(parsed_triangle.capacity());
+    results.push(get_first_line(&parsed_triangle));
+
+    for i in 1..parsed_triangle.len() {
+        let new_result = calculate_sum_of_children(&parsed_triangle[i], &results[i - 1]);
+        results.push(new_result);
+    }
+
+    let solution: u32 = results[results.len() - 1][0].sum();
+
+    println!("{}", solution);
+
+    assert_eq!(solution, 7273);
+
+}
+
+fn get_triangle () -> Vec<Vec<u32>> {
     vec![
         vec![59],
         vec![73,41],
@@ -114,98 +206,4 @@ fn get_triangle () -> Vec<Vec<i32>> {
         vec![30,11,85,31,34,71,13,48,05,14,44,03,19,67,23,73,19,57,06,90,94,72,57,69,81,62,59,68,88,57,55,69,49,13,07,87,97,80,89,05,71,05,05,26,38,40,16,62,45,99,18,38,98,24,21,26,62,74,69,04,85,57,77,35,58,67,91,79,79,57,86,28,66,34,72,51,76,78,36,95,63,90,08,78,47,63,45,31,22,70,52,48,79,94,15,77,61,67,68],
         vec![23,33,44,81,80,92,93,75,94,88,23,61,39,76,22,03,28,94,32,06,49,65,41,34,18,23,08,47,62,60,03,63,33,13,80,52,31,54,73,43,70,26,16,69,57,87,83,31,03,93,70,81,47,95,77,44,29,68,39,51,56,59,63,07,25,70,07,77,43,53,64,03,94,42,95,39,18,01,66,21,16,97,20,50,90,16,70,10,95,69,29,06,25,61,41,26,15,59,63,35]
     ]
-}
-
-struct TriangleItem {
-    value: i32,
-    sum_of_children: i32
-}
-
-impl TriangleItem {
-
-    fn new (value: i32) -> TriangleItem { TriangleItem { value, sum_of_children: 0 } }
-
-    fn sum (&self) -> i32 { self.value + self.sum_of_children }
-
-    fn copy(&self) -> TriangleItem {
-        TriangleItem {
-            value: self.value,
-            sum_of_children: self.sum_of_children
-        }
-    }
-}
-
-fn parse_triangle_line (triangle_line: &Vec<i32>) -> Vec<TriangleItem> {
-    triangle_line.iter()
-        .map(|&value| TriangleItem::new(value) )
-        .collect()
-}
-
-fn parse_triangle (triangle: &Vec<Vec<i32>>) -> Vec<Vec<TriangleItem>> {
-    let mut result: Vec<Vec<TriangleItem>> = Vec::with_capacity(triangle.capacity());
-
-    for line_index in (0..triangle.len()).rev() {
-        let parsed_line = parse_triangle_line(&triangle[line_index]);
-        result.push(parsed_line);
-    }
-
-    result
-}
-
-fn calculate_sum_of_children (current_line: &Vec<TriangleItem>, children_line: &Vec<TriangleItem>) -> Vec<TriangleItem> {
-    // Copy current_line to result
-    let mut result = Vec::with_capacity(current_line.len());
-    for i in 0..current_line.len() {
-        result.push(current_line[i].copy());
-    }
-    // Solve
-    for i in 0..result.len() {
-        // It's children are : children[i], and if exists children[i + 1]
-        let slice_last_index = std::cmp::min(children_line.len() - 1, i + 1);
-        
-        let maybe_best_child = children_line[i..=slice_last_index].iter()
-            .max_by_key(|&child| child.sum());
-        
-        let best_child = match maybe_best_child {
-            None => panic!("No children??"),
-            Some(x) => x,
-        };
-
-        result[i].sum_of_children = best_child.sum();
-    }
-    result
-}
-
-fn get_first_line (v: &Vec<Vec<TriangleItem>>) -> Vec<TriangleItem> {
-    let first_line = &v[0];
-    let mut result: Vec<TriangleItem> = Vec::with_capacity(first_line.len());
-    for x in first_line {
-        result.push(x.copy());
-    }
-    result
-}
-
-// fn print_result (v: &Vec<Vec<TriangleItem>>) {
-//     for line in v.iter().rev() {
-//         for item in line {
-//             print!("({:3}|{:3}|{:4}) ", item.value, item.sum_of_children, item.sum());
-//         }
-//         print!("\n");
-//     }
-//     print!("\n\n");
-// }
-
-fn main () {
-    let parsed_triangle = parse_triangle(&get_triangle());
-    let mut results: Vec<Vec<TriangleItem>> = Vec::with_capacity(parsed_triangle.capacity());
-    results.push(get_first_line(&parsed_triangle));
-
-    for i in 1..parsed_triangle.len() {
-        let new_result = calculate_sum_of_children(&parsed_triangle[i], &results[i - 1]);
-        results.push(new_result);
-    }
-
-    let solution = &results[results.len() - 1][0];
-    println!("{}", solution.sum());
-
 }

@@ -21,11 +21,11 @@ impl Fibonacci {
 
 impl Iterator for Fibonacci {
     type Item = u32;
-    fn next (&mut self) -> Option<u32> {
-        let new_value = self.n1 + self.n2;
+    fn next (&mut self) -> Option<Self::Item> {
+        let sum = self.n1 + self.n2;
         self.n1 = self.n2;
-        self.n2 = new_value;
-        Some(new_value)
+        self.n2 = sum;
+        Some(self.n1)
     }
 }
 
@@ -35,5 +35,8 @@ fn main () {
         .take_while(|&x| x <= 4_000_000)
         .filter(|&x| x % 2 == 0)
         .sum::<u32>();
+
     println!("{}", sum);
+
+    assert_eq!(sum, 4613732);
 }

@@ -15,7 +15,7 @@
 //         .sum()
 // }
 
-// performance: O=log(n)/2
+// performance: O=log(n)
 fn d(n: u32) -> u32 {
     (2..=(n as f64).sqrt() as u32)
         .filter(|&i| n % i == 0)
@@ -23,11 +23,14 @@ fn d(n: u32) -> u32 {
 }
 
 fn main () {
-    const N: u32 = 10000;
+    const N: u32 = 10_000;
     let result = (1..N)
         .filter(|a| d(*a) != *a)
         .filter(|a| d(d(*a)) == *a)
         .sum::<u32>();
+
     println!("{}", result);
+
+    assert_eq!(result, 31626);
 
 }

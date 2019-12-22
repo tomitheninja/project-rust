@@ -15,5 +15,8 @@ fn main () {
     let result = factorial(N + N)
         / factorial(N)
         / factorial(N);
+
     println!("{}", result);
+
+    assert_eq!(result, 137846528820.0);
 }

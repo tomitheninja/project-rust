@@ -8,6 +8,7 @@
 
 fn main () {
     const SLICE_LENGTH: usize = 4;
+
     let arr = get_input();
     let mut largest_product = 1;
     for p1 in 0..arr.len() - SLICE_LENGTH {
@@ -16,33 +17,25 @@ fn main () {
             let mut product_down = 1;
             let mut product_downright = 1;
             let mut product_upright = 1;
+
             for i in 0..SLICE_LENGTH {
                 product_right *= &arr[p1][p2 + i];
                 product_down *= &arr[p2 + i][p1];
+                product_downright *= &arr[p1 + i][p2 + i];
                 if p2 > SLICE_LENGTH {
                     product_upright *= &arr[p1 + i][p2 - i];
                 }
-                product_downright *= &arr[p1 + i][p2 + i];
             }
-            if product_right > largest_product {
-                // println!("x: [{:2},{:2}] +{}", p1, p2, product_right - largest_product);
-                largest_product = product_right;
-            }
-            if product_down > largest_product {
-                // println!("y: [{:2},{:2}] +{}", p1, p2, product_down - largest_product);
-                largest_product = product_down;
-            }
-            if product_upright > largest_product {
-                // println!("/: [{:2},{:2}] +{}", p1, p2, product_upright - largest_product);
-                largest_product = product_upright;
-            }
-            if product_downright > largest_product {
-                // println!("\\: [{:2},{:2}] +{}", p1, p2, product_downright - largest_product);
-                largest_product = product_downright;
-            }
+
+            largest_product = product_right.max(largest_product);
+            largest_product = product_down.max(largest_product);
+            largest_product = product_downright.max(largest_product);
+            largest_product = product_upright.max(largest_product);
         }
     }
     println!("{}", largest_product);
+
+    assert_eq!(largest_product, 70600674);
 }
 
 fn get_input() -> [[u64; 20]; 20]{

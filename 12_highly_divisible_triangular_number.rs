@@ -42,7 +42,7 @@ impl TriangleNumber {
 
 impl Iterator for TriangleNumber {
     type Item = u64;
-    fn next (&mut self) -> Option<u64> {
+    fn next (&mut self) -> Option<Self::Item> {
         self.value += 1;
         self.sum += self.value;
         Some(self.sum)
@@ -54,5 +54,8 @@ fn main () {
     let result: u64 = TriangleNumber::new()
         .filter(|&x| count_dividers(x) >= 500)
         .nth(0).unwrap();
+
     println!("{}", result);
+
+    assert_eq!(result, 76576500);
 }

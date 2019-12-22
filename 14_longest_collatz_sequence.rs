@@ -33,14 +33,14 @@ struct CollatzSequence {
 }
 
 impl CollatzSequence {
-    fn new (initial_value: u64) -> CollatzSequence {
-        CollatzSequence { value: initial_value }
+    fn new (starting_value: u64) -> CollatzSequence {
+        CollatzSequence { value: starting_value }
     }
 }
 
 impl Iterator for CollatzSequence {
     type Item = u64;
-    fn next (&mut self) -> Option<u64> {
+    fn next (&mut self) -> Option<Self::Item> {
         match next_collatz_item(self.value) {
             None => None,
             Some(next_value) => {
@@ -53,7 +53,9 @@ impl Iterator for CollatzSequence {
 
 fn main () {
     let result = (1..1_000_000)
-        .max_by_key(|initial_value| CollatzSequence::new(*initial_value).count())
+        .max_by_key(|starting_value| CollatzSequence::new(*starting_value).count())
         .unwrap();
     println!("{}", result);
+
+    assert_eq!(result, 837799);
 }
