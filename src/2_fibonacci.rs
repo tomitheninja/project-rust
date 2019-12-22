@@ -14,14 +14,14 @@ struct Fibonacci {
 }
 
 impl Fibonacci {
-    fn new () -> Fibonacci {
+    fn new() -> Fibonacci {
         Fibonacci { n1: 0, n2: 1 }
     }
 }
 
 impl Iterator for Fibonacci {
     type Item = u32;
-    fn next (&mut self) -> Option<Self::Item> {
+    fn next(&mut self) -> Option<Self::Item> {
         let sum = self.n1 + self.n2;
         self.n1 = self.n2;
         self.n2 = sum;
@@ -29,8 +29,7 @@ impl Iterator for Fibonacci {
     }
 }
 
-
-fn main () {
+fn main() {
     let sum = Fibonacci::new()
         .take_while(|&x| x <= 4_000_000)
         .filter(|&x| x % 2 == 0)
