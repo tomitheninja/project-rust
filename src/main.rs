@@ -26,4 +26,5 @@ mod problem_maximum_path_sum_2;
 
 fn main() {
     println!("Hello, world!");
+    println!("Try this: cargo test <filter>")
 }
