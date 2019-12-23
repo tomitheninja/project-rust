@@ -46,17 +46,17 @@ fn is_num_sum_of_two (sum: &u32, a: &Vec<u32>) -> bool {
     return false;
 }
 
+#[allow(dead_code)]
+pub fn run (limit: u32) -> u32 {
+    let abundant_numbers_below_limit = get_abundant_numbers_below_limit(limit);
 
-fn main () {
-    const LIMIT: u32 = 28124;
-
-    let abundant_numbers_below_limit = get_abundant_numbers_below_limit(LIMIT);
-
-    let result = (1..LIMIT)
+    (1..limit)
         .filter(|i| !is_num_sum_of_two(i, &abundant_numbers_below_limit))
-        .sum::<u32>();
+        .sum()
+}
 
-    println!("{}", result);
 
-    assert_eq!(result, 4179871);
+#[test]
+fn test () {
+    assert_eq!(run(28124), 4179871);
 }

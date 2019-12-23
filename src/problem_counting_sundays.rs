@@ -14,7 +14,7 @@
 // How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 
 #[derive(PartialEq, Eq, Copy, Clone, Debug)]
-enum Month { 
+pub enum Month { 
     January = 1,
     February,
     March,
@@ -31,7 +31,7 @@ enum Month {
 
 
 #[derive(PartialEq, Eq, Copy, Clone, Debug)]
-enum DayOfWeek {
+pub enum DayOfWeek {
     Monday = 1,
     Tuesday,
     Wednesday,
@@ -42,7 +42,7 @@ enum DayOfWeek {
 }
 
 #[derive(Copy, Clone, Debug)]
-struct Date {
+pub struct Date {
     year: u16,
     month: Month,
     day: u8,
@@ -150,15 +150,18 @@ impl Iterator for Date {
     }
 }
 
-fn main () {
-    let result = Date::new()
-        .skip_while(|d| d.year < 1901)
-        .take_while(|d| d.year < 2001)
-        .filter(|d| d.day == 1)
-        .filter(|d| d.day_of_week == DayOfWeek::Sunday)
-        .count();
+#[allow(dead_code)]
+pub fn run (first_year: u16, last_year: u16, date: u8, day_of_week: DayOfWeek) -> usize {
+    assert!(first_year >= 1900);
+    Date::new()
+        .skip_while(|d| d.year <= first_year)
+        .take_while(|d| d.year <= last_year)
+        .filter(|d| d.day == date)
+        .filter(|d| d.day_of_week == day_of_week)
+        .count()
+}
 
-    println!("{}", result);
-
-    assert_eq!(result, 171);
+#[test]
+fn test () {
+    assert_eq!(run(1900, 2000, 1, DayOfWeek::Sunday), 171);
 }

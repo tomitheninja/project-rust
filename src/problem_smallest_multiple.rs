@@ -1,8 +1,8 @@
 // Smallest multiple
 
-// 2510 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+// 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 
-// What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 10?
+// What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 fn smallest_factor(n: u32) -> u32 {
     match n {
@@ -63,11 +63,14 @@ fn get_product_of_factors(factor_amount: Vec<u32>) -> u64 {
     product
 }
 
-fn main() {
-    let n = 20;
+#[allow(dead_code)]
+pub fn run(n: usize) -> u64 {
     let factors = get_largest_factors_in_range(n);
-    let result = get_product_of_factors(factors);
-    println!("{}", result);
+    get_product_of_factors(factors)
+}
 
-    assert_eq!(result, 232792560);
+#[test]
+fn test () {
+    assert_eq!(2520, run(10));
+    assert_eq!(232792560, run(20));
 }

@@ -84,7 +84,8 @@ fn get_first_line (v: &Vec<Vec<TriangleItem>>) -> Vec<TriangleItem> {
 //     print!("\n\n");
 // }
 
-fn main () {
+#[allow(dead_code)]
+pub fn run () -> u32 {
     let parsed_triangle = parse_triangle(&get_triangle());
     let mut results: Vec<Vec<TriangleItem>> = Vec::with_capacity(parsed_triangle.capacity());
     results.push(get_first_line(&parsed_triangle));
@@ -94,12 +95,12 @@ fn main () {
         results.push(new_result);
     }
 
-    let solution: u32 = results[results.len() - 1][0].sum();
+    results[results.len() - 1][0].sum()
+}
 
-    println!("{}", solution);
-
-    assert_eq!(solution, 1074);
-
+#[test]
+fn test () {
+    assert_eq!(run(), 1074);
 }
 
 

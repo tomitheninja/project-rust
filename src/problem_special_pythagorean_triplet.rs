@@ -19,18 +19,26 @@ fn sqrt (x: u32) -> Option<u32> {
     None
 }
 
-fn main () {
-    for a in 1..1000 {
+#[allow(dead_code)]
+pub fn run (sum: u32) -> Option<u32> {
+    for a in 1..sum {
         for b in 1..=a {
             let maybe_c = sqrt(a * a + b * b);
             let c = match maybe_c {
                 None => continue,
                 Some(c) => c,
             };
-            if a + b + c == 1000 && a * a + b * b == c * c {
-                println!("{} * {} * {} = {}", a, b, c, a * b * c);
-                return;
+            if a + b + c == sum && a * a + b * b == c * c {
+                println!("{} {} {}", a, b, c);
+                return Some(a * b * c);
             }
         }
     }
+    None
+}
+
+#[test]
+fn test () {
+    assert_eq!(run(375 + 200 + 425).unwrap(), 375  * 200 * 425);
+    assert_eq!(run(3 + 4 + 5).unwrap(), 3 * 4 * 5);
 }

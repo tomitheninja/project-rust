@@ -29,13 +29,15 @@ impl Iterator for Fibonacci {
     }
 }
 
-fn main() {
-    let sum = Fibonacci::new()
-        .take_while(|&x| x <= 4_000_000)
+#[allow(dead_code)]
+pub fn run(limit: u32) -> u32 {
+    Fibonacci::new()
+        .take_while(|&x| x <= limit)
         .filter(|&x| x % 2 == 0)
-        .sum::<u32>();
+        .sum()
+}
 
-    println!("{}", sum);
-
-    assert_eq!(sum, 4613732);
+#[test]
+fn test() {
+    assert_eq!(4613732, run(4_000_000));
 }

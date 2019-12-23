@@ -22,15 +22,21 @@ fn d(n: u32) -> u32 {
         .fold(1, |sum, div| sum + div + n / div)
 }
 
-fn main () {
-    const N: u32 = 10_000;
-    let result = (1..N)
+#[allow(dead_code)]
+pub fn run (limit: u32) -> u32 {
+    (1..limit)
         .filter(|a| d(*a) != *a)
         .filter(|a| d(d(*a)) == *a)
-        .sum::<u32>();
+        .sum::<u32>()
+}
 
-    println!("{}", result);
+#[test]
+fn test_d () {
+    assert_eq!(d(220), 284);
+    assert_eq!(d(284), 220);
+}
 
-    assert_eq!(result, 31626);
-
+#[test]
+fn test () {
+    assert_eq!(run(10_000), 31626);
 }

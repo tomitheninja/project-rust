@@ -21,15 +21,16 @@ fn get_prime_table(n: usize) -> Vec<bool> {
     v
 }
 
-fn main() {
-    const N_TH: usize = 10_001;
+#[allow(dead_code)]
+pub fn run(n_th: usize) -> usize {
     let is_prime = get_prime_table(999999);
 
-    let result = (0..x.len())
+    (0..is_prime.len())
         .filter(|i| is_prime[*i])
-        .nth(N_TH - 1).unwrap();
-    
-    println!("{}", result);
+        .nth(n_th - 1).unwrap()
+}
 
-    assert_eq!(result, 104743);
+#[test]
+fn test () {
+    assert_eq!(104743, run(10_001));
 }

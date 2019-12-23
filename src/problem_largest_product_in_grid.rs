@@ -6,36 +6,40 @@
 
 // What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 
-fn main () {
-    const SLICE_LENGTH: usize = 4;
+#[allow(dead_code)]
+pub fn run (slice_length: usize) -> u64 {
+    use std::cmp::max;
 
     let arr = get_input();
     let mut largest_product = 1;
-    for p1 in 0..arr.len() - SLICE_LENGTH {
-        for p2 in 0..arr.len() - SLICE_LENGTH {
+    for p1 in 0..arr.len() - slice_length {
+        for p2 in 0..arr.len() - slice_length {
             let mut product_right = 1;
             let mut product_down = 1;
             let mut product_downright = 1;
             let mut product_upright = 1;
 
-            for i in 0..SLICE_LENGTH {
+            for i in 0..slice_length {
                 product_right *= &arr[p1][p2 + i];
                 product_down *= &arr[p2 + i][p1];
                 product_downright *= &arr[p1 + i][p2 + i];
-                if p2 > SLICE_LENGTH {
+                if p2 > slice_length {
                     product_upright *= &arr[p1 + i][p2 - i];
                 }
             }
 
-            largest_product = product_right.max(largest_product);
-            largest_product = product_down.max(largest_product);
-            largest_product = product_downright.max(largest_product);
-            largest_product = product_upright.max(largest_product);
+            largest_product = max(largest_product, product_right);
+            largest_product = max(largest_product, product_down);
+            largest_product = max(largest_product, product_downright);
+            largest_product = max(largest_product, product_upright);
         }
     }
-    println!("{}", largest_product);
+    largest_product
+}
 
-    assert_eq!(largest_product, 70600674);
+#[test]
+fn test () {
+    assert_eq!(70600674, run(4));
 }
 
 fn get_input() -> [[u64; 20]; 20]{

@@ -36,27 +36,21 @@ fn is_palindrome(n: u32) -> bool {
     true
 }
 
-fn main() {
-    // use std::cmp::max;
+#[allow(dead_code)]
+pub fn run(range_first: u32, range_last: u32) -> u32 {
 
-    // let mut largest = 0;
-    // for num1 in 100..=999 {
-    //     let x = (100..=999)
-    //             .map(|num2| (num1 * num2) as u32)
-    //             .filter(|product| is_palindrome(*product))
-    //             .max().unwrap_or(0);
-    //     largest = max(largest, x);
-    // }
-
-    let largest = (100..=999)
+    (range_first..=range_last)
         .map(|num1|
-            (100..=999)
+            (range_first..=range_last)
                 .map(|num2| (num1 * num2) as u32)
                 .filter(|product| is_palindrome(*product))
                 .max().unwrap_or(0)
         )
-        .max().unwrap();
-    println!("{}", largest);
+        .max().unwrap()
+}
 
-    assert_eq!(largest, 906609);
+#[test]
+fn test () {
+    assert_eq!(9009, run(10, 99));
+    assert_eq!(906609, run(100, 999));
 }

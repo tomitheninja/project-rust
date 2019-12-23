@@ -7,11 +7,14 @@
 
 // Find the sum of all the multiples of 3 or 5 below 1000.
 
-fn main() {
-    let result = (1..1000)
+#[allow(dead_code)]
+pub fn run (n: usize) -> u32 {
+    (1..n as u32)
         .filter(|&x| x % 3 == 0 || x % 5 == 0)
-        .sum::<u32>();
-    println!("{}", result);
+        .sum()
+}
 
-    assert_eq!(result, 233168);
+#[test]
+fn test () {
+    assert_eq!(233168, run(1000));
 }

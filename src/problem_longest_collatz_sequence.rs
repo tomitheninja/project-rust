@@ -28,6 +28,17 @@ fn next_collatz_item(n: u64) -> Option<u64> {
     }
 }
 
+#[test]
+fn test_next_collatz_item() {
+    assert_eq!(next_collatz_item(13).unwrap(), 40);
+    assert_eq!(next_collatz_item(20).unwrap(), 10);
+    assert_eq!(next_collatz_item(2).unwrap(), 1);
+    match next_collatz_item(1) {
+        Some(_x) => panic!("Should return None"),
+        None => (),
+    }
+}
+
 struct CollatzSequence {
     value: u64,
 }
@@ -51,11 +62,14 @@ impl Iterator for CollatzSequence {
     }
 }
 
-fn main () {
-    let result = (1..1_000_000)
-        .max_by_key(|starting_value| CollatzSequence::new(*starting_value).count())
-        .unwrap();
-    println!("{}", result);
+#[allow(dead_code)]
+pub fn run (until: usize) -> usize {
+    (1..until)
+        .max_by_key(|starting_value| CollatzSequence::new(*starting_value as u64).count())
+        .unwrap()
+}
 
-    assert_eq!(result, 837799);
+#[test]
+fn test () {
+    assert_eq!(run(1_000_000), 837799);
 }

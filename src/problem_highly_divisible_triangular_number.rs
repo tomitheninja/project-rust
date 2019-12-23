@@ -49,13 +49,15 @@ impl Iterator for TriangleNumber {
     }
 }
 
+ #[allow(dead_code)]
+pub fn run (limit: usize) -> u64 {
+    TriangleNumber::new()
+      .filter(|&x| count_dividers(x) >= limit)
+      .nth(0).unwrap()
+}
 
-fn main () {
-    let result: u64 = TriangleNumber::new()
-        .filter(|&x| count_dividers(x) >= 500)
-        .nth(0).unwrap();
-
-    println!("{}", result);
-
-    assert_eq!(result, 76576500);
+#[test]
+fn test () {
+    assert_eq!(run(5), 28);
+    assert_eq!(run(500), 76576500);
 }

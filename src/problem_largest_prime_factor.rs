@@ -16,6 +16,7 @@ fn get_smallest_factor(n: u64) -> u64 {
 fn get_largest_prime_factor (n: u64) -> u64 {
     let mut remaining = n;
     let mut latest_factor = 1;
+    // smallest_factor()'s last output is the largest one
     while remaining > 1 {
         latest_factor = get_smallest_factor(remaining);
         remaining /= latest_factor;
@@ -23,10 +24,12 @@ fn get_largest_prime_factor (n: u64) -> u64 {
     latest_factor
 }
 
-fn main() {
-    let result = get_largest_prime_factor(600851475143);
-    // smallest_factor()'s last output is the largest one 
-    println!("{}", result);
+#[allow(dead_code)]
+pub fn run(n: u64) -> u64 {
+    get_largest_prime_factor(n)
+}
 
-    assert_eq!(result, 6857);
+#[test]
+fn test () {
+    assert_eq!(run(600851475143), 6857);
 }

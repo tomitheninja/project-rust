@@ -71,13 +71,15 @@ fn length(n: usize) -> usize {
     }
 }
 
-fn main () {
-    
-    let result = (1..=1000)
+#[allow(dead_code)]
+pub fn run (limit: usize) -> usize {
+    (1..=limit)
         .map(|i| length(i))
-        .sum::<usize>();
+        .sum()
+}
 
-    println!("{}", result);
-
-    assert_eq!(result, 21124);
+#[test]
+fn test () {
+    assert_eq!(run(5), 19);
+    assert_eq!(run(1000), 21124);
 }

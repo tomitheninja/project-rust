@@ -10,13 +10,15 @@ fn factorial (n: u16) -> f64 {
     result
 }
 
-fn main () {
-    const N: u16 = 20;
-    let result = factorial(N + N)
-        / factorial(N)
-        / factorial(N);
+#[allow(dead_code)]
+pub fn run (n: u16) -> f64 {
+    factorial(n + n)
+        / factorial(n)
+        / factorial(n)
+}
 
-    println!("{}", result);
-
-    assert_eq!(result, 137846528820.0);
+#[test]
+fn test () {
+    assert_eq!(run(2), 6.0);
+    assert_eq!(run(20), 137846528820.0);
 }
