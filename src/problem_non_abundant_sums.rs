@@ -8,13 +8,17 @@
 
 // As 12 is the smallest abundant number,
 // 1 + 2 + 3 + 4 + 6 = 16, the smallest number that can be written as the sum of two abundant numbers is 24.
-// By mathematical analysis, it can be shown that all integers greater than 28123 can be written as the sum of two abundant numbers. 
+// By mathematical analysis, it can be shown that all integers greater than 28123 can be written as the sum of two abundant numbers.
 // However, this upper limit cannot be reduced any further by analysis even though it is known that the greatest number that cannot be expressed as the sum of two abundant numbers is less than this limit.
 
 // Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
 
 fn sum_of_unique_params(n1: u32, n2: u32) -> u32 {
-    if n1 == n2 { n1 } else { n1 + n2 }
+    if n1 == n2 {
+        n1
+    } else {
+        n1 + n2
+    }
 }
 
 fn sum_of_divisors(n: u32) -> u32 {
@@ -29,15 +33,15 @@ fn get_abundant_numbers_below_limit(limit: u32) -> Vec<u32> {
         .collect::<Vec<u32>>();
 }
 
-fn is_num_sum_of_two (sum: &u32, a: &Vec<u32>) -> bool {
+fn is_num_sum_of_two(sum: &u32, a: &Vec<u32>) -> bool {
     for item1 in a {
         if item1 > sum {
-            break
+            break;
         };
         let item2_candidate = sum - item1; // n2 = sum - n1
-        // if *item1 == item2_candidate {
-        //     continue
-        // };
+                                           // if *item1 == item2_candidate {
+                                           //     continue
+                                           // };
         match a.binary_search(&item2_candidate) {
             Err(_index) => continue,
             Ok(_index) => return true,
@@ -47,7 +51,7 @@ fn is_num_sum_of_two (sum: &u32, a: &Vec<u32>) -> bool {
 }
 
 #[allow(dead_code)]
-pub fn run (limit: u32) -> u32 {
+pub fn run(limit: u32) -> u32 {
     let abundant_numbers_below_limit = get_abundant_numbers_below_limit(limit);
 
     (1..limit)
@@ -55,8 +59,7 @@ pub fn run (limit: u32) -> u32 {
         .sum()
 }
 
-
 #[test]
-fn test () {
+fn test() {
     assert_eq!(run(28124), 4179871);
 }

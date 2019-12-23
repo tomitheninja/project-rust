@@ -6,7 +6,7 @@
 // Find the largest palindrome made from the product of two 3-digit numbers.
 
 /// 10^(number of digits in n)
-/// 
+///
 /// examples:
 /// - 999 -> 100
 /// - 1234 -> 1000
@@ -25,11 +25,9 @@ fn is_palindrome(n: u32) -> bool {
     while num > 9 {
         let left_digit = num / size_of_number;
         let right_digit = num % 10;
-    
         if left_digit != right_digit {
             return false;
         }
-    
         num = num % size_of_number / 10; // remove digits from left and right
         size_of_number /= 100; // reduce by 2 digits
     }
@@ -38,19 +36,20 @@ fn is_palindrome(n: u32) -> bool {
 
 #[allow(dead_code)]
 pub fn run(range_first: u32, range_last: u32) -> u32 {
-
     (range_first..=range_last)
-        .map(|num1|
+        .map(|num1| {
             (range_first..=range_last)
                 .map(|num2| (num1 * num2) as u32)
                 .filter(|product| is_palindrome(*product))
-                .max().unwrap_or(0)
-        )
-        .max().unwrap()
+                .max()
+                .unwrap_or(0)
+        })
+        .max()
+        .unwrap()
 }
 
 #[test]
-fn test () {
+fn test() {
     assert_eq!(9009, run(10, 99));
     assert_eq!(906609, run(100, 999));
 }

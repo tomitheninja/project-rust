@@ -31,13 +31,13 @@ pub fn run_math(n: u64) -> u64 {
 }
 
 #[test]
-fn test_math () {
+fn test_math() {
     assert_eq!(2640, run_math(10));
     assert_eq!(25164150, run_math(100));
 }
 
 #[test]
-fn test_rust () {
+fn test_rust() {
     assert_eq!(2640, run_rust(10));
     assert_eq!(25164150, run_rust(100));
 }

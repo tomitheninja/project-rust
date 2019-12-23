@@ -12,7 +12,7 @@ fn get_prime_table(n: usize) -> Vec<bool> {
 
     for step in 2..n {
         if !v[step] {
-            continue;  // Skip if already false
+            continue; // Skip if already false
         }
         for factor in (2 * step..n).step_by(step) {
             v[factor] = false;
@@ -27,10 +27,11 @@ pub fn run(n_th: usize) -> usize {
 
     (0..is_prime.len())
         .filter(|i| is_prime[*i])
-        .nth(n_th - 1).unwrap()
+        .nth(n_th - 1)
+        .unwrap()
 }
 
 #[test]
-fn test () {
+fn test() {
     assert_eq!(104743, run(10_001));
 }

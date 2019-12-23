@@ -8,13 +8,6 @@
 
 // Evaluate the sum of all the amicable numbers under 10000.
 
-// /// performance: O=n/2
-// fn d_slow (n: u32) -> u32 {
-//     (1..=n/2)
-//         .filter(|i| n % i == 0)
-//         .sum()
-// }
-
 // performance: O=log(n)
 fn d(n: u32) -> u32 {
     (2..=(n as f64).sqrt() as u32)
@@ -23,7 +16,7 @@ fn d(n: u32) -> u32 {
 }
 
 #[allow(dead_code)]
-pub fn run (limit: u32) -> u32 {
+pub fn run(limit: u32) -> u32 {
     (1..limit)
         .filter(|a| d(*a) != *a)
         .filter(|a| d(d(*a)) == *a)
@@ -31,12 +24,12 @@ pub fn run (limit: u32) -> u32 {
 }
 
 #[test]
-fn test_d () {
+fn test_d() {
     assert_eq!(d(220), 284);
     assert_eq!(d(284), 220);
 }
 
 #[test]
-fn test () {
+fn test() {
     assert_eq!(run(10_000), 31626);
 }

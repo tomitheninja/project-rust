@@ -7,13 +7,11 @@
 fn get_smallest_factor(n: u64) -> u64 {
     match n {
         1 => 1,
-        _ => (2..)
-            .filter(|&x| n % x == 0)
-            .nth(0).unwrap()
+        _ => (2..).filter(|&x| n % x == 0).nth(0).unwrap(),
     }
 }
 
-fn get_largest_prime_factor (n: u64) -> u64 {
+fn get_largest_prime_factor(n: u64) -> u64 {
     let mut remaining = n;
     let mut latest_factor = 1;
     // smallest_factor()'s last output is the largest one
@@ -30,6 +28,6 @@ pub fn run(n: u64) -> u64 {
 }
 
 #[test]
-fn test () {
+fn test() {
     assert_eq!(run(600851475143), 6857);
 }

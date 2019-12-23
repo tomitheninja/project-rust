@@ -8,26 +8,7 @@
 // By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 // find the sum of the even-valued terms.
 
-struct Fibonacci {
-    n1: u32,
-    n2: u32,
-}
-
-impl Fibonacci {
-    fn new() -> Fibonacci {
-        Fibonacci { n1: 0, n2: 1 }
-    }
-}
-
-impl Iterator for Fibonacci {
-    type Item = u32;
-    fn next(&mut self) -> Option<Self::Item> {
-        let sum = self.n1 + self.n2;
-        self.n1 = self.n2;
-        self.n2 = sum;
-        Some(self.n1)
-    }
-}
+use crate::lib::sequence::Fibonacci;
 
 #[allow(dead_code)]
 pub fn run(limit: u32) -> u32 {

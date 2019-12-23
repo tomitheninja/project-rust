@@ -7,7 +7,7 @@
 // There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 // Find the product abc.
 
-fn sqrt (x: u32) -> Option<u32> {
+fn sqrt(x: u32) -> Option<u32> {
     for i in 1..=x {
         if i * i == x {
             return Some(i);
@@ -20,7 +20,7 @@ fn sqrt (x: u32) -> Option<u32> {
 }
 
 #[allow(dead_code)]
-pub fn run (sum: u32) -> Option<u32> {
+pub fn run(sum: u32) -> Option<u32> {
     for a in 1..sum {
         for b in 1..=a {
             let maybe_c = sqrt(a * a + b * b);
@@ -38,7 +38,7 @@ pub fn run (sum: u32) -> Option<u32> {
 }
 
 #[test]
-fn test () {
-    assert_eq!(run(375 + 200 + 425).unwrap(), 375  * 200 * 425);
+fn test() {
+    assert_eq!(run(375 + 200 + 425).unwrap(), 375 * 200 * 425);
     assert_eq!(run(3 + 4 + 5).unwrap(), 3 * 4 * 5);
 }

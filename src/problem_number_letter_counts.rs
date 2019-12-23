@@ -36,7 +36,7 @@ const HUNDRED_AND: usize = HUNDRED + 3; // x*100 and
 const THOUSAND: usize = 8; // 1000
 
 /// Length of the spelled number
-/// 
+///
 /// DOES NOT WORK WITH 0
 fn length(n: usize) -> usize {
     match n {
@@ -72,14 +72,12 @@ fn length(n: usize) -> usize {
 }
 
 #[allow(dead_code)]
-pub fn run (limit: usize) -> usize {
-    (1..=limit)
-        .map(|i| length(i))
-        .sum()
+pub fn run(limit: usize) -> usize {
+    (1..=limit).map(|i| length(i)).sum()
 }
 
 #[test]
-fn test () {
+fn test() {
     assert_eq!(run(5), 19);
     assert_eq!(run(1000), 21124);
 }

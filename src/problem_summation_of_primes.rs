@@ -11,7 +11,8 @@ fn get_prime_table(n: usize) -> Vec<bool> {
     v[1] = false;
 
     for step in 2..n {
-        if !v[step] { // Already false
+        if !v[step] {
+            // Already false
             continue;
         }
         for factor in (2 * step..n).step_by(step) {
@@ -22,7 +23,7 @@ fn get_prime_table(n: usize) -> Vec<bool> {
 }
 
 #[allow(dead_code)]
-pub fn run (limit: usize) -> u64 {
+pub fn run(limit: usize) -> u64 {
     let is_prime = get_prime_table(limit);
 
     (0..limit)
@@ -32,6 +33,6 @@ pub fn run (limit: usize) -> u64 {
 }
 
 #[test]
-fn test () {
+fn test() {
     assert_eq!(142913828922, run(2_000_000));
 }

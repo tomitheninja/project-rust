@@ -2,7 +2,7 @@
 
 // How many such routes are there through a 20×20 grid?
 
-fn factorial (n: u16) -> f64 {
+fn factorial(n: u16) -> f64 {
     let mut result = 1.0;
     for i in 1..=n {
         result *= i as f64;
@@ -11,14 +11,12 @@ fn factorial (n: u16) -> f64 {
 }
 
 #[allow(dead_code)]
-pub fn run (n: u16) -> f64 {
-    factorial(n + n)
-        / factorial(n)
-        / factorial(n)
+pub fn run(n: u16) -> f64 {
+    factorial(n + n) / factorial(n) / factorial(n)
 }
 
 #[test]
-fn test () {
+fn test() {
     assert_eq!(run(2), 6.0);
     assert_eq!(run(20), 137846528820.0);
 }

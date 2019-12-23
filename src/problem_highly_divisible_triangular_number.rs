@@ -19,45 +19,24 @@
 
 /// Returns the number of dividers of n
 /// Includes 1 and n
+use crate::lib::sequence::TriangleNumber;
+
 fn count_dividers(n: u64) -> usize {
     (1..=(n as f64).sqrt() as u64)
         .filter(|&i| n % i == 0)
         .fold(0, |count, i| if n / i == i { count + 1 } else { count + 2 }) as usize
 }
 
-/// Represents a number that calculated like this: 1+2+3+4...+n
-struct TriangleNumber {
-    value: u64,
-    sum: u64,
-}
-
-impl TriangleNumber {
-    fn new() -> TriangleNumber {
-        TriangleNumber {
-            value: 1,
-            sum: 1,
-        }
-    }
-}
-
-impl Iterator for TriangleNumber {
-    type Item = u64;
-    fn next (&mut self) -> Option<Self::Item> {
-        self.value += 1;
-        self.sum += self.value;
-        Some(self.sum)
-    }
-}
-
- #[allow(dead_code)]
-pub fn run (limit: usize) -> u64 {
+#[allow(dead_code)]
+pub fn run(limit: usize) -> u64 {
     TriangleNumber::new()
-      .filter(|&x| count_dividers(x) >= limit)
-      .nth(0).unwrap()
+        .filter(|&x| count_dividers(x) >= limit)
+        .nth(0)
+        .unwrap()
 }
 
 #[test]
-fn test () {
+fn test() {
     assert_eq!(run(5), 28);
     assert_eq!(run(500), 76576500);
 }

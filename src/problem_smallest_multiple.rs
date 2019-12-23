@@ -7,9 +7,7 @@
 fn smallest_factor(n: u32) -> u32 {
     match n {
         1 => 1,
-        _ => (2..)
-            .filter(|&x| n % x == 0)
-            .nth(0).unwrap()
+        _ => (2..).filter(|&x| n % x == 0).nth(0).unwrap(),
     }
 }
 
@@ -70,7 +68,7 @@ pub fn run(n: usize) -> u64 {
 }
 
 #[test]
-fn test () {
+fn test() {
     assert_eq!(2520, run(10));
     assert_eq!(232792560, run(20));
 }
