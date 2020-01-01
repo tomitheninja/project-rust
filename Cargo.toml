@@ -13,3 +13,6 @@ path = "./pkg/fibonacci/"
 
 [dependencies.prime_factors]
 path = "./pkg/prime_factors/"
+
+[dependencies.prime_table]
+path = "./pkg/prime_table/"
