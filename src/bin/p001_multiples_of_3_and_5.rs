@@ -18,7 +18,7 @@ fn main() {
 }
 
 #[cfg(test)]
-mod tests {
+mod p001_tests {
     use super::compute;
 
     #[test]
