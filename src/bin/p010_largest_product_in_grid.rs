@@ -6,8 +6,7 @@
 
 // What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 
-#[allow(dead_code)]
-pub fn run(slice_length: usize) -> u64 {
+fn compute(slice_length: usize) -> u64 {
     use std::cmp::max;
 
     let arr = get_input();
@@ -37,9 +36,18 @@ pub fn run(slice_length: usize) -> u64 {
     largest_product
 }
 
-#[test]
-fn test() {
-    assert_eq!(70600674, run(4));
+fn main() {
+    println!("p010: {}", compute(4));
+}
+
+#[cfg(test)]
+mod p010_tests {
+    use super::*;
+
+    #[test]
+    fn test_for_four() {
+        assert_eq!(674, compute(4) % 1_000);
+    }
 }
 
 fn get_input() -> [[u64; 20]; 20] {
