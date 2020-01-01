@@ -8,15 +8,12 @@
 // Find the product abc.
 
 fn sqrt(x: u32) -> Option<u32> {
-    for i in 1..=x {
-        if i * i == x {
-            return Some(i);
-        }
-        if i * i > x {
-            break;
-        }
+    let result = (x as f64).sqrt() as u32;
+    if result * result == x {
+        Some(result)
+    } else {
+        None
     }
-    None
 }
 
 fn compute(sum: u32) -> Option<u32> {
