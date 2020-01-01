@@ -4,12 +4,8 @@
 
 // What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
-fn smallest_factor(n: u32) -> u32 {
-    match n {
-        1 => 1,
-        _ => (2..).filter(|&x| n % x == 0).nth(0).unwrap(),
-    }
-}
+extern crate prime_factors;
+use prime_factors::get_smallest_prime_factor;
 
 /// Returns a vector that contains the factors of a range
 ///
@@ -27,8 +23,7 @@ fn get_largest_factors_in_range(len: usize) -> Vec<u32> {
         let mut prev_factor = 1;
         let mut prev_factor_amount = 0;
         loop {
-            let factor = smallest_factor(num);
-            // println("{} is factor of {}", factor, n)
+            let factor = get_smallest_prime_factor(num.into()).unwrap_or(1) as u32;
             if factor == prev_factor {
                 prev_factor_amount += 1;
             } else {
@@ -61,14 +56,24 @@ fn get_product_of_factors(factor_amount: Vec<u32>) -> u64 {
     product
 }
 
-#[allow(dead_code)]
-pub fn run(n: usize) -> u64 {
+fn compute(n: usize) -> u64 {
     let factors = get_largest_factors_in_range(n);
     get_product_of_factors(factors)
 }
 
-#[test]
-fn test() {
-    assert_eq!(2520, run(10));
-    assert_eq!(232792560, run(20));
+fn main() {
+    println!("p005: {}", compute(20));
+}
+
+#[cfg(test)]
+mod p005_tests {
+    use super::compute;
+    #[test]
+    fn below_ten() {
+        assert_eq!(2520, compute(10));
+    }
+    #[test]
+    fn below_twenty() {
+        assert_eq!(60, compute(20) % 100);
+    }
 }
