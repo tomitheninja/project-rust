@@ -9,7 +9,7 @@ use prime_table::get_prime_table;
 
 fn compute(n_th: usize) -> usize {
     // 2^31 has 20.4% primes
-    // n * 25 should work in u32 range
+    // n * 25 should work in the u32 range
     let is_prime = get_prime_table(n_th * 25);
 
     (0..is_prime.len())
