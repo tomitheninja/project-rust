@@ -37,11 +37,11 @@ fn compute(slice_length: usize) -> u64 {
 }
 
 fn main() {
-    println!("p010: {}", compute(4));
+    println!("p011: {}", compute(4));
 }
 
 #[cfg(test)]
-mod p010_tests {
+mod p011_tests {
     use super::*;
 
     #[test]
