@@ -8,17 +8,30 @@
 // By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 // find the sum of the even-valued terms.
 
-use crate::lib::sequence::Fibonacci;
+extern crate fibonacci;
+use fibonacci::Fibonacci;
 
-#[allow(dead_code)]
-pub fn run(limit: u32) -> u32 {
+fn compute(bound: u32) -> u32 {
     Fibonacci::new()
-        .take_while(|&x| x <= limit)
+        .take_while(|&x| x <= bound)
         .filter(|&x| x % 2 == 0)
         .sum()
 }
 
-#[test]
-fn test() {
-    assert_eq!(4613732, run(4_000_000));
+fn main() {
+    println!("p002: {}", compute(4_000_000));
+}
+
+#[cfg(test)]
+mod p002_tests {
+    use super::compute;
+
+    #[test]
+    fn below_hundred() {
+        assert_eq!(2 + 8 + 34, compute(100));
+    }
+    #[test]
+    fn below_four_million() {
+        assert_eq!(32, compute(4_000_000) % 100);
+    }
 }
