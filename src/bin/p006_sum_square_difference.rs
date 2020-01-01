@@ -32,7 +32,7 @@ pub fn compute_rust(n: u64) -> u64 {
     a * a - b
 }
 
-pub fn main () {
+pub fn main() {
     println!("p006: {}", compute_math(100));
 }
 

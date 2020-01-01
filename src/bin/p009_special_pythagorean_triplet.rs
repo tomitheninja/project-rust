@@ -47,7 +47,6 @@ mod p009_tests {
     #[test]
     fn test_for_3_4_and_5() {
         assert_eq!(3 * 4 * 5, compute(3 + 4 + 5).unwrap());
-
     }
 
     #[test]

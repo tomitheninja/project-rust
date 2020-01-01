@@ -24,7 +24,7 @@ fn compute(size_of_number: usize) -> u64 {
         .unwrap()
 }
 
-fn main () {
+fn main() {
     println!("p008: {}", compute(13));
 }
 
