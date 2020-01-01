@@ -10,3 +10,6 @@ edition = "2018"
 
 [dependencies.fibonacci]
 path = "./pkg/fibonacci/"
+
+[dependencies.prime_factors]
+path = "./pkg/prime_factors/"
