@@ -34,8 +34,7 @@ fn is_palindrome(n: u32) -> bool {
     true
 }
 
-#[allow(dead_code)]
-pub fn run(range_first: u32, range_last: u32) -> u32 {
+fn compute(range_first: u32, range_last: u32) -> u32 {
     (range_first..=range_last)
         .map(|num1| {
             (range_first..=range_last)
@@ -48,8 +47,35 @@ pub fn run(range_first: u32, range_last: u32) -> u32 {
         .unwrap()
 }
 
-#[test]
-fn test() {
-    assert_eq!(9009, run(10, 99));
-    assert_eq!(906609, run(100, 999));
+fn main() {
+    println!("p004: {}", compute(100, 999));
+}
+
+#[cfg(test)]
+mod p004_tests {
+    use super::{compute, is_palindrome};
+    #[test]
+    fn _1_is_palindrome() {
+        assert_eq!(true, is_palindrome(1));
+    }
+    #[test]
+    fn _10_is_not_palindrome() {
+        assert_eq!(false, is_palindrome(10));
+    }
+    #[test]
+    fn _101_is_palindrome() {
+        assert_eq!(true, is_palindrome(101));
+    }
+    #[test]
+    fn _111_is_palindrome() {
+        assert_eq!(true, is_palindrome(111));
+    }
+    #[test]
+    fn two_digit() {
+        assert_eq!(9009, compute(10, 99));
+    }
+    #[test]
+    fn three_digit() {
+        assert_eq!(09, compute(100, 999) % 100);
+    }
 }
