@@ -1,20 +1,20 @@
-pub fn get_smallest_prime_factor(n: u32) -> Option<u32> {
+pub fn get_smallest_prime_factor(n: u64) -> Option<u64> {
     match n {
         0 | 1 => None,
         _ => (2..=n).filter(|x| n % x == 0).nth(0),
     }
 }
 
-pub struct PrimeFactor(u32);
+pub struct PrimeFactor(u64);
 
 impl PrimeFactor {
-    fn new(value: u32) -> PrimeFactor {
+    pub fn new(value: u64) -> PrimeFactor {
         PrimeFactor(value)
     }
 }
 
 impl Iterator for PrimeFactor {
-    type Item = u32;
+    type Item = u64;
     fn next(&mut self) -> Option<Self::Item> {
         if self.0 == 0 {
             return None;
