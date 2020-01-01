@@ -1,15 +1,21 @@
+// Algorithm: Sieve of Eratosthenes
 pub fn get_prime_table(n: usize) -> Vec<bool> {
     assert!(n >= 2);
     let mut v = vec![true; n];
     v[0] = false;
     v[1] = false;
 
-    for step in 2..n {
+    let n_sqrt = (n as f64).sqrt() as usize;
+
+    for step in 2..=n_sqrt as usize {
         if !v[step] {
-            continue; // Skip if already false
+            continue; // Skip if first is already false
         }
-        for factor in (2 * step..n).step_by(step) {
-            v[factor] = false;
+        // Else first step is prime
+        // All the others are not (multiplies of first step)
+        let second_step = step * step;
+        for j in (second_step..n).step_by(step) {
+            v[j] = false;
         }
     }
     v
