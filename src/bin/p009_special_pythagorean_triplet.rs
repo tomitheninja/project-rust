@@ -19,8 +19,7 @@ fn sqrt(x: u32) -> Option<u32> {
     None
 }
 
-#[allow(dead_code)]
-pub fn run(sum: u32) -> Option<u32> {
+fn compute(sum: u32) -> Option<u32> {
     for a in 1..sum {
         for b in 1..=a {
             let maybe_c = sqrt(a * a + b * b);
@@ -37,8 +36,22 @@ pub fn run(sum: u32) -> Option<u32> {
     None
 }
 
-#[test]
-fn test() {
-    assert_eq!(run(375 + 200 + 425).unwrap(), 375 * 200 * 425);
-    assert_eq!(run(3 + 4 + 5).unwrap(), 3 * 4 * 5);
+fn main() {
+    println!("p010: {}", compute(1_000).unwrap());
+}
+
+#[cfg(test)]
+mod p009_tests {
+    use super::*;
+
+    #[test]
+    fn test_for_3_4_and_5() {
+        assert_eq!(3 * 4 * 5, compute(3 + 4 + 5).unwrap());
+
+    }
+
+    #[test]
+    fn test_for_1000() {
+        assert_eq!(75_000, compute(1000).unwrap() % 100_000);
+    }
 }
