@@ -36,10 +36,10 @@ fn get_abundant_numbers_below_limit(limit: u32) -> Vec<u32> {
 fn is_num_sum_of_two(sum: u32, a: &[u32]) -> bool {
     #[allow(clippy::op_ref)] // Don't remove, wont `item1 > &sum` work
     for item1 in a {
-        if item1 > &sum {
+        if *item1 > sum {
             break;
         };
-        let item2_candidate = sum - item1;
+        let item2_candidate = sum - *item1;
         match a.binary_search(&item2_candidate) {
             Err(_index) => continue,
             Ok(_index) => return true,

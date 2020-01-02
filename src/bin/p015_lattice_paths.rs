@@ -6,11 +6,11 @@ fn factorial(n: u16) -> f64 {
     (1..=n).map(|i| i as f64).product()
 }
 
-pub fn compute(n: u16) -> f64 {
+fn compute(n: u16) -> f64 {
     factorial(n + n) / factorial(n) / factorial(n)
 }
 
-pub fn main() {
+fn main() {
     println!("p015: {}", compute(20));
 }
 
@@ -27,7 +27,6 @@ mod test_p015 {
     fn solve_for_2() {
         assert!((compute(2) - 6.0).abs() < EPSILON);
     }
-
     #[test]
     fn solve_for_20() {
         let result = compute(20);

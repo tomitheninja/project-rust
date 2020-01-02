@@ -17,7 +17,7 @@ fn main() {
 
 #[cfg(test)]
 mod p003_tests {
-    use super::compute;
+    use super::*;
 
     #[test]
     fn test_13195() {

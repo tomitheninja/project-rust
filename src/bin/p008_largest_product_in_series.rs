@@ -36,7 +36,6 @@ mod p008_tests {
     fn test_for_4() {
         assert_eq!(5832, compute(4));
     }
-
     #[test]
     fn test_for_13() {
         assert_eq!(24_000, compute(13) % 100_000);

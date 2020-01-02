@@ -44,7 +44,6 @@ mod p009_tests {
     fn test_for_3_4_and_5() {
         assert_eq!(3 * 4 * 5, compute(3 + 4 + 5).unwrap());
     }
-
     #[test]
     fn test_for_1000() {
         assert_eq!(75_000, compute(1000).unwrap() % 100_000);

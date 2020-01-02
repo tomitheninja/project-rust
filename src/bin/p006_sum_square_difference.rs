@@ -18,21 +18,22 @@ fn get_sum_of_squares_in_range(n: u64) -> u64 {
     n * (n + 1) * (2 * n + 1) / 6
 }
 
-pub fn compute_math(n: u64) -> u64 {
+fn compute_math(n: u64) -> u64 {
     let a = get_sum_of_numbers_in_range(n);
     let b = get_sum_of_squares_in_range(n);
 
     a * a - b
 }
 
-pub fn compute_rust(n: u64) -> u64 {
+#[allow(unused)]
+fn compute_rust(n: u64) -> u64 {
     let a: u64 = (1..=n).sum();
     let b: u64 = (1..=n).map(|x| x * x).sum();
 
     a * a - b
 }
 
-pub fn main() {
+fn main() {
     println!("p006: {}", compute_math(100));
 }
 

@@ -24,7 +24,7 @@ fn main() {
 
 #[cfg(test)]
 mod p002_tests {
-    use super::compute;
+    use super::*;
 
     #[test]
     fn below_hundred() {

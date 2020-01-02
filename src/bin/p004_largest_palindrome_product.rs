@@ -53,7 +53,8 @@ fn main() {
 
 #[cfg(test)]
 mod p004_tests {
-    use super::{compute, is_palindrome};
+    use super::*;
+
     #[test]
     fn _1_is_palindrome() {
         assert_eq!(true, is_palindrome(1));

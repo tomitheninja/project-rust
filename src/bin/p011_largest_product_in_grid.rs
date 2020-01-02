@@ -19,11 +19,11 @@ fn compute(slice_length: usize) -> u64 {
             let mut product_upright = 1;
 
             for i in 0..slice_length {
-                product_right *= &arr[p1][p2 + i];
-                product_down *= &arr[p2 + i][p1];
-                product_downright *= &arr[p1 + i][p2 + i];
+                product_right *= arr[p1][p2 + i];
+                product_down *= arr[p2 + i][p1];
+                product_downright *= arr[p1 + i][p2 + i];
                 if p2 > slice_length {
-                    product_upright *= &arr[p1 + i][p2 - i];
+                    product_upright *= arr[p1 + i][p2 - i];
                 }
             }
 

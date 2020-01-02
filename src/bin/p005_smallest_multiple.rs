@@ -67,7 +67,8 @@ fn main() {
 
 #[cfg(test)]
 mod p005_tests {
-    use super::compute;
+    use super::*;
+
     #[test]
     fn below_ten() {
         assert_eq!(2520, compute(10));

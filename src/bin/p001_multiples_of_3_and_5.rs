@@ -19,13 +19,12 @@ fn main() {
 
 #[cfg(test)]
 mod p001_tests {
-    use super::compute;
+    use super::*;
 
     #[test]
     fn below_ten() {
         assert_eq!(23, compute(10));
     }
-
     #[test]
     fn below_thousand() {
         assert_eq!(68, compute(1000) % 100);

@@ -94,7 +94,6 @@ mod test_p017 {
     fn test_5() {
         assert_eq!(19, compute(5));
     }
-
     #[test]
     fn test_1000() {
         assert_eq!(124, compute(1000) % 1000);

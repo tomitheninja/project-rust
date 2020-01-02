@@ -30,7 +30,6 @@ mod p007_tests {
     fn test_for_6() {
         assert_eq!(13, compute(6));
     }
-
     #[test]
     fn test_for_10001() {
         assert_eq!(43, compute(10_001) % 100);
