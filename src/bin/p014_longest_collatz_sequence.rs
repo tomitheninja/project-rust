@@ -14,16 +14,25 @@
 
 // NOTE: Once the chain starts the terms are allowed to go above one million.
 
-use crate::lib::sequence::CollatzSequence;
+extern crate collatz_sequence;
+use collatz_sequence::CollatzSequence;
 
-#[allow(dead_code)]
-pub fn run(until: usize) -> usize {
-    (1..until)
-        .max_by_key(|starting_value| CollatzSequence::new(*starting_value as u64).count())
+fn compute(bound: usize) -> usize {
+    (1..bound)
+        .max_by_key(|i| CollatzSequence::new(*i as u64).count())
         .unwrap()
 }
 
-#[test]
-fn test() {
-    assert_eq!(run(1_000_000), 837799);
+fn main() {
+    println!("p014: {}", compute(1_000_000));
+}
+
+#[cfg(test)]
+mod test_p014 {
+    use super::*;
+
+    #[test]
+    fn test_13() {
+        assert_eq!(837799, compute(1_000_000));
+    }
 }
