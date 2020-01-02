@@ -28,14 +28,15 @@ fn sum_of_divisors(n: u32) -> u32 {
 }
 
 fn get_abundant_numbers_below_limit(limit: u32) -> Vec<u32> {
-    return (1..limit)
+    (1..limit)
         .filter(|i| *i < sum_of_divisors(*i))
-        .collect::<Vec<u32>>();
+        .collect::<Vec<u32>>()
 }
 
-fn is_num_sum_of_two(sum: &u32, a: &Vec<u32>) -> bool {
+fn is_num_sum_of_two(sum: u32, a: &[u32]) -> bool {
+    #[allow(clippy::op_ref)] // Don't remove, wont `item1 > &sum` work
     for item1 in a {
-        if item1 > sum {
+        if item1 > &sum {
             break;
         };
         let item2_candidate = sum - item1;
@@ -44,14 +45,14 @@ fn is_num_sum_of_two(sum: &u32, a: &Vec<u32>) -> bool {
             Ok(_index) => return true,
         }
     }
-    return false;
+    false
 }
 
 fn compute(limit: u32) -> u32 {
     let abundant_numbers_below_limit = get_abundant_numbers_below_limit(limit);
 
     (1..limit)
-        .filter(|i| !is_num_sum_of_two(i, &abundant_numbers_below_limit))
+        .filter(|i| !is_num_sum_of_two(*i, &abundant_numbers_below_limit))
         .sum()
 }
 
