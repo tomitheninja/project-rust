@@ -25,7 +25,6 @@ fn compute(sum: u32) -> Option<u32> {
                 Some(c) => c,
             };
             if a + b + c == sum && a * a + b * b == c * c {
-                println!("{} {} {}", a, b, c);
                 return Some(a * b * c);
             }
         }
@@ -34,7 +33,7 @@ fn compute(sum: u32) -> Option<u32> {
 }
 
 fn main() {
-    println!("p010: {}", compute(1_000).unwrap());
+    println!("p009: {}", compute(1_000).unwrap());
 }
 
 #[cfg(test)]
