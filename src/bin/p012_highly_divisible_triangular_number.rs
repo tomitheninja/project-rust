@@ -17,9 +17,8 @@
 
 // What is the value of the first triangle number to have over five hundred divisors?
 
-/// Returns the number of dividers of n
-/// Includes 1 and n
-use crate::lib::sequence::TriangleNumber;
+extern crate triangular_number;
+use triangular_number::TriangularNumber;
 
 fn count_dividers(n: u64) -> usize {
     (1..=(n as f64).sqrt() as u64)
@@ -27,16 +26,28 @@ fn count_dividers(n: u64) -> usize {
         .fold(0, |count, i| if n / i == i { count + 1 } else { count + 2 }) as usize
 }
 
-#[allow(dead_code)]
-pub fn run(limit: usize) -> u64 {
-    TriangleNumber::new()
-        .filter(|&x| count_dividers(x) >= limit)
+fn compute(min_count_divisors: usize) -> u64 {
+    TriangularNumber::new()
+        .map(|t_num| t_num.get_value())
+        .filter(|&x| count_dividers(x) >= min_count_divisors)
         .nth(0)
         .unwrap()
 }
 
-#[test]
-fn test() {
-    assert_eq!(run(5), 28);
-    assert_eq!(run(500), 76576500);
+fn main() {
+    println!("p012: {}", compute(500));
+}
+
+#[cfg(test)]
+mod test_p012 {
+    use super::*;
+
+    #[test]
+    fn has_at_least_5_divisors() {
+        assert_eq!(28, compute(5));
+    }
+    #[test]
+    fn has_at_least_500_divisors() {
+        assert_eq!(6500, compute(500) % 10000)
+    }
 }
