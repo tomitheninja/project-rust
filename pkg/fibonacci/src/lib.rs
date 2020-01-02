@@ -1,12 +1,15 @@
 pub struct Fibonacci(u32, u32);
 
 impl Fibonacci {
-    pub fn new() -> Fibonacci {
-        Fibonacci(0, 1)
-    }
 
-    fn get_next_pair(&self) -> Fibonacci {
+    fn get_next_pair(&self) -> Self {
         Fibonacci(self.1, self.0 + self.1)
+    }
+}
+
+impl Default for Fibonacci {
+    fn default() -> Self {
+        Fibonacci(0, 1)
     }
 }
 

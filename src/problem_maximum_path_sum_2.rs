@@ -20,7 +20,7 @@ struct TriangleItem {
 
 impl TriangleItem {
 
-    fn new (value: u32) -> TriangleItem { TriangleItem { value, sum_of_children: 0 } }
+    fn new (value: u32) -> Self { TriangleItem { value, sum_of_children: 0 } }
 
     fn sum (&self) -> u32 { self.value + self.sum_of_children }
 
@@ -104,6 +104,7 @@ fn test () {
     assert_eq!(run(), 7273);
 }
 
+#[allow(clippy::all)]
 fn get_triangle () -> Vec<Vec<u32>> {
     vec![
         vec![59],

@@ -50,6 +50,7 @@ mod p011_tests {
     }
 }
 
+#[allow(clippy::all)]
 fn get_input() -> [[u64; 20]; 20] {
     [
         [

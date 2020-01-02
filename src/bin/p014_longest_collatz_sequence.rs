@@ -33,6 +33,6 @@ mod test_p014 {
 
     #[test]
     fn test_13() {
-        assert_eq!(837799, compute(1_000_000));
+        assert_eq!(837_799, compute(1_000_000));
     }
 }

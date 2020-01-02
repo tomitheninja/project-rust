@@ -3,7 +3,7 @@ pub struct CollatzSequence {
 }
 
 impl CollatzSequence {
-    pub fn new(starting_value: u64) -> CollatzSequence {
+    pub fn new(starting_value: u64) -> Self {
         CollatzSequence {
             value: starting_value,
         }

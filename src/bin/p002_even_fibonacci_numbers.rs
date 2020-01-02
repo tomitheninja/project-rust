@@ -12,7 +12,7 @@ extern crate fibonacci;
 use fibonacci::Fibonacci;
 
 fn compute(bound: u32) -> u32 {
-    Fibonacci::new()
+    Fibonacci::default()
         .take_while(|&x| x <= bound)
         .filter(|&x| x % 2 == 0)
         .sum()

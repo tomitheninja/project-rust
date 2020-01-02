@@ -76,6 +76,6 @@ mod p004_tests {
     }
     #[test]
     fn three_digit() {
-        assert_eq!(09, compute(100, 999) % 100);
+        assert_eq!(9, compute(100, 999) % 100);
     }
 }

@@ -27,7 +27,7 @@ fn count_dividers(n: u64) -> usize {
 }
 
 fn compute(min_count_divisors: usize) -> u64 {
-    TriangularNumber::new()
+    TriangularNumber::default()
         .map(|t_num| t_num.get_value())
         .filter(|&x| count_dividers(x) >= min_count_divisors)
         .nth(0)

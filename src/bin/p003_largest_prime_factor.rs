@@ -12,7 +12,7 @@ fn compute(n: u64) -> u64 {
 }
 
 fn main() {
-    println!("p003: {}", compute(600851475143));
+    println!("p003: {}", compute(600_851_475_143));
 }
 
 #[cfg(test)]
@@ -26,6 +26,6 @@ mod p003_tests {
 
     #[test]
     fn test_600851475143() {
-        assert_eq!(57, compute(600851475143) % 100);
+        assert_eq!(57, compute(600_851_475_143) % 100);
     }
 }

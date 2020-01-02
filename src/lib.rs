@@ -7,8 +7,8 @@ pub mod sequence {
         n2: u32,
     }
 
-    impl Fibonacci {
-        pub fn new() -> Fibonacci {
+    impl Default for Fibonacci {
+        fn default() -> Self {
             Fibonacci { n1: 0, n2: 1 }
         }
     }
@@ -30,8 +30,8 @@ pub mod sequence {
         sum: u64,
     }
 
-    impl TriangleNumber {
-        pub fn new() -> TriangleNumber {
+    impl Default for TriangleNumber {
+        fn default() -> Self {
             TriangleNumber { value: 1, sum: 1 }
         }
     }
@@ -52,7 +52,7 @@ pub mod sequence {
     }
 
     impl CollatzSequence {
-        pub fn new(starting_value: u64) -> CollatzSequence {
+        pub fn new(starting_value: u64) -> Self {
             CollatzSequence {
                 value: starting_value,
             }
@@ -74,9 +74,8 @@ pub mod sequence {
         assert_eq!(next_collatz_item(13).unwrap(), 40);
         assert_eq!(next_collatz_item(20).unwrap(), 10);
         assert_eq!(next_collatz_item(2).unwrap(), 1);
-        match next_collatz_item(1) {
-            Some(_x) => panic!("Should return None"),
-            None => (),
+        if let Some(_x) = next_collatz_item(1) {
+            panic!("Should return None")
         }
     }
 
@@ -131,7 +130,7 @@ pub mod date {
     }
 
     impl Month {
-        pub fn next(&self) -> Month {
+        pub fn next(self) -> Self {
             match self {
                 Month::January => Month::February,
                 Month::February => Month::March,
@@ -150,7 +149,7 @@ pub mod date {
     }
 
     impl DayOfWeek {
-        pub fn next(&self) -> DayOfWeek {
+        pub fn next(self) -> Self {
             match self {
                 DayOfWeek::Monday => DayOfWeek::Tuesday,
                 DayOfWeek::Tuesday => DayOfWeek::Wednesday,
@@ -164,21 +163,12 @@ pub mod date {
     }
 
     impl Date {
-        pub fn new() -> Date {
-            Date {
-                year: 1900,
-                month: Month::January,
-                day: 1,
-                day_of_week: DayOfWeek::Monday,
-            }
-        }
-
-        pub fn is_leap_year(&self) -> bool {
+        pub fn is_leap_year(self) -> bool {
             let year = self.year;
             year % 4 == 0 && year % 100 != 0 || year % 400 == 0
         }
 
-        pub fn days_in_month(&self) -> usize {
+        pub fn days_in_month(self) -> usize {
             match self.month {
                 Month::September | Month::April | Month::June | Month::November => 30,
                 Month::February => {
@@ -192,23 +182,23 @@ pub mod date {
             }
         }
 
-        pub fn get_year(&self) -> u16 {
+        pub fn get_year(self) -> u16 {
             self.year
         }
 
-        pub fn get_month(&self) -> Month {
+        pub fn get_month(self) -> Month {
             self.month
         }
 
-        pub fn get_day(&self) -> u8 {
+        pub fn get_day(self) -> u8 {
             self.day
         }
 
-        pub fn get_day_of_week(&self) -> DayOfWeek {
+        pub fn get_day_of_week(self) -> DayOfWeek {
             self.day_of_week
         }
 
-        pub fn get_tomorrow_date(&self) -> Date {
+        pub fn get_tomorrow_date(self) -> Self {
             let month_change = self.day + 1 > self.days_in_month() as u8;
             let year_change = month_change && self.month == Month::December;
 
@@ -230,6 +220,17 @@ pub mod date {
                 month: tomorrow_month,
                 year: tomorrow_year,
                 day_of_week: tomorrow_day_of_week,
+            }
+        }
+    }
+
+    impl Default for Date {
+        fn default() -> Self {
+            Date {
+                year: 1900,
+                month: Month::January,
+                day: 1,
+                day_of_week: DayOfWeek::Monday,
             }
         }
     }

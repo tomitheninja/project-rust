@@ -1,13 +1,10 @@
-#[derive(Clone)]
+#[derive(Clone, Default)]
 pub struct TriangularNumber {
     index: usize,
     value: u64,
 }
 
 impl TriangularNumber {
-    pub fn new() -> TriangularNumber {
-        TriangularNumber { index: 0, value: 0 }
-    }
 
     pub fn get_index(&self) -> usize {
         self.index

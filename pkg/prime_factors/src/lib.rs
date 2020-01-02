@@ -8,7 +8,7 @@ pub fn get_smallest_prime_factor(n: u64) -> Option<u64> {
 pub struct PrimeFactor(u64);
 
 impl PrimeFactor {
-    pub fn new(value: u64) -> PrimeFactor {
+    pub fn new(value: u64) -> Self {
         PrimeFactor(value)
     }
 }
@@ -20,10 +20,7 @@ impl Iterator for PrimeFactor {
             return None;
         }
         let maybe_factor = get_smallest_prime_factor(self.0);
-        match maybe_factor {
-            Some(div) => self.0 /= div,
-            _ => (),
-        }
+        if let Some(div) = maybe_factor { self.0 /= div }
         maybe_factor
     }
 }
