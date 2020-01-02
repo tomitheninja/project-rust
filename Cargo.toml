@@ -16,3 +16,6 @@ path = "./pkg/prime_factors/"
 
 [dependencies.prime_table]
 path = "./pkg/prime_table/"
+
+[dependencies.triangular_number]
+path = "./pkg/triangular_number/"

@@ -19,5 +19,10 @@ dependencies = [
  "fibonacci 0.1.0",
  "prime_factors 0.1.0",
  "prime_table 0.1.0",
+ "triangular_number 0.1.0",
 ]
+
+[[package]]
+name = "triangular_number"
+version = "0.1.0"
 
