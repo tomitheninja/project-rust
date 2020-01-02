@@ -13,7 +13,7 @@ name = "prime_table"
 version = "0.1.0"
 
 [[package]]
-name = "project-euler-rust-solutions"
+name = "rust-euler"
 version = "0.1.0"
 dependencies = [
  "fibonacci 0.1.0",
