@@ -45,6 +45,7 @@ const THOUSAND: usize = 8; // 1000
 ///
 /// DOES NOT WORK WITH 0
 fn length(n: usize) -> usize {
+    #[allow(clippy::match_overlapping_arm)]
     match n {
         1 => ONE,
         2 => TWO,
@@ -78,13 +79,12 @@ fn length(n: usize) -> usize {
 }
 
 fn compute(last: usize) -> usize {
-    (1..=last).map(|i| length(i)).sum()
+    (1..=last).map(length).sum()
 }
 
-fn main () {
+fn main() {
     println!("p017: {}", compute(1000));
 }
-
 
 #[cfg(test)]
 mod test_p017 {

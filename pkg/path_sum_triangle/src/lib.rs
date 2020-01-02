@@ -31,7 +31,7 @@ pub mod triangle {
 
     use super::*;
 
-    fn parse_triangle_line(triangle_line: &Vec<u32>) -> Vec<TriangleItem> {
+    fn parse_triangle_line(triangle_line: &[u32]) -> Vec<TriangleItem> {
         triangle_line
             .iter()
             .map(|&value| TriangleItem::new(value))
@@ -48,14 +48,14 @@ pub mod triangle {
     }
 
     pub fn calculate_sum_of_children(
-        current_line: &Vec<TriangleItem>,
-        children_line: &Vec<TriangleItem>,
+        current_line: &[TriangleItem],
+        children_line: &[TriangleItem],
     ) -> Vec<TriangleItem> {
         use std::cmp::min;
         // Copy current_line to result
         let mut result = Vec::with_capacity(current_line.len());
-        for i in 0..current_line.len() {
-            result.push(current_line[i].clone());
+        for item in current_line {
+            result.push(item.clone());
         }
         // Solve
         for i in 0..result.len() {
@@ -71,7 +71,7 @@ pub mod triangle {
         result
     }
 
-    pub fn get_first_line(v: &Vec<Vec<TriangleItem>>) -> Vec<TriangleItem> {
+    pub fn get_first_line(v: &[Vec<TriangleItem>]) -> Vec<TriangleItem> {
         let first_line = &v[0];
         let mut result: Vec<TriangleItem> = Vec::with_capacity(first_line.len());
         for x in first_line {
@@ -80,7 +80,7 @@ pub mod triangle {
         result
     }
 
-    pub fn print_result(v: &Vec<Vec<TriangleItem>>) {
+    pub fn print_result(v: &[Vec<TriangleItem>]) {
         for line in v.iter().rev() {
             for item in line {
                 print!(
@@ -90,9 +90,10 @@ pub mod triangle {
                     item.sum()
                 );
             }
-            print!("\n");
+            println!();
         }
-        print!("\n\n");
+        println!();
+        println!();
     }
 
     pub fn solve(triangle: Vec<Vec<u32>>) -> u32 {
