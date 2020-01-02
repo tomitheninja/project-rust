@@ -15,21 +15,37 @@ fn d(n: u32) -> u32 {
         .fold(1, |sum, div| sum + div + n / div)
 }
 
-#[allow(dead_code)]
-pub fn run(limit: u32) -> u32 {
-    (1..limit)
+fn compute(bound: u32) -> u32 {
+    (1..bound)
         .filter(|a| d(*a) != *a)
         .filter(|a| d(d(*a)) == *a)
         .sum::<u32>()
 }
 
-#[test]
-fn test_d() {
-    assert_eq!(d(220), 284);
-    assert_eq!(d(284), 220);
+fn main() {
+    println!("p021: {}", compute(10_000));
 }
 
-#[test]
-fn test() {
-    assert_eq!(run(10_000), 31626);
+#[cfg(test)]
+mod test_d {
+    use super::*;
+
+    #[test]
+    fn d_220() {
+        assert_eq!(284, d(220));
+    }
+    #[test]
+    fn d_284() {
+        assert_eq!(220, d(284));
+    }
+}
+
+#[cfg(test)]
+mod test_sum {
+    use super::*;
+
+    #[test]
+    fn below_10_000 () {
+        assert_eq!(626, compute(10_000) % 1000);
+    }
 }
