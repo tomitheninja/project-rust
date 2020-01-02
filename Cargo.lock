@@ -9,6 +9,10 @@ name = "fibonacci"
 version = "0.1.0"
 
 [[package]]
+name = "path_sum_triangle"
+version = "0.1.0"
+
+[[package]]
 name = "prime_factors"
 version = "0.1.0"
 
@@ -22,6 +26,7 @@ version = "0.1.0"
 dependencies = [
  "collatz_sequence 0.1.0",
  "fibonacci 0.1.0",
+ "path_sum_triangle 0.1.0",
  "prime_factors 0.1.0",
  "prime_table 0.1.0",
  "triangular_number 0.1.0",

@@ -22,3 +22,6 @@ path = "./pkg/triangular_number/"
 
 [dependencies.collatz_sequence]
 path = "./pkg/collatz_sequence/"
+
+[dependencies.path_sum_triangle]
+path = "./pkg/path_sum_triangle/"
