@@ -35,11 +35,10 @@ mod test_p067 {
     fn large_triangle() {
         assert_eq!(73, solve(get_large_triangle()) % 100);
     }
-}
 
-#[allow(clippy::all)]
-fn get_small_triangle() -> Vec<Vec<u32>> {
-    vec![vec![3], vec![7, 4], vec![2, 4, 6], vec![8, 5, 9, 3]]
+    fn get_small_triangle() -> Vec<Vec<u32>> {
+        vec![vec![3], vec![7, 4], vec![2, 4, 6], vec![8, 5, 9, 3]]
+    }
 }
 
 #[allow(clippy::all)]
