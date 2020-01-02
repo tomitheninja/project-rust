@@ -19,3 +19,6 @@ path = "./pkg/prime_table/"
 
 [dependencies.triangular_number]
 path = "./pkg/triangular_number/"
+
+[dependencies.collatz_sequence]
+path = "./pkg/collatz_sequence/"
