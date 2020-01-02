@@ -1,5 +1,5 @@
 [package]
-name = "triangular-number"
+name = "triangular_number"
 version = "0.1.0"
 authors = ["tomitheninja <suditomi@pm.me>"]
 edition = "2018"
