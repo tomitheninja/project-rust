@@ -38,10 +38,7 @@ fn is_num_sum_of_two(sum: &u32, a: &Vec<u32>) -> bool {
         if item1 > sum {
             break;
         };
-        let item2_candidate = sum - item1; // n2 = sum - n1
-                                           // if *item1 == item2_candidate {
-                                           //     continue
-                                           // };
+        let item2_candidate = sum - item1;
         match a.binary_search(&item2_candidate) {
             Err(_index) => continue,
             Ok(_index) => return true,
@@ -50,8 +47,7 @@ fn is_num_sum_of_two(sum: &u32, a: &Vec<u32>) -> bool {
     return false;
 }
 
-#[allow(dead_code)]
-pub fn run(limit: u32) -> u32 {
+fn compute(limit: u32) -> u32 {
     let abundant_numbers_below_limit = get_abundant_numbers_below_limit(limit);
 
     (1..limit)
@@ -59,7 +55,16 @@ pub fn run(limit: u32) -> u32 {
         .sum()
 }
 
-#[test]
-fn test() {
-    assert_eq!(run(28124), 4179871);
+fn main() {
+    println!("p023: {}", compute(28124));
+}
+
+#[cfg(test)]
+mod test_p023 {
+    use super::*;
+
+    #[test]
+    fn test_28124() {
+        assert_eq!(871, compute(28124) % 1000);
+    }
 }
