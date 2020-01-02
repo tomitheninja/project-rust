@@ -1,8 +1,14 @@
 // Number letter counts
-// If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
+// If the numbers 1 to 5 are written out in words:
+// one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
 
-// If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
-// NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage.
+// If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words,
+// how many letters would be used?
+
+// NOTE: Do not count spaces or hyphens.
+// For example, 342 (three hundred and forty-two) contains 23 letters
+// and 115 (one hundred and fifteen) contains 20 letters.
+// The use of "and" when writing out numbers is in compliance with British usage.
 
 const ONE: usize = 3; // 1
 const TWO: usize = 3; // 2
@@ -71,13 +77,26 @@ fn length(n: usize) -> usize {
     }
 }
 
-#[allow(dead_code)]
-pub fn run(limit: usize) -> usize {
-    (1..=limit).map(|i| length(i)).sum()
+fn compute(last: usize) -> usize {
+    (1..=last).map(|i| length(i)).sum()
 }
 
-#[test]
-fn test() {
-    assert_eq!(run(5), 19);
-    assert_eq!(run(1000), 21124);
+fn main () {
+    println!("p017: {}", compute(1000));
+}
+
+
+#[cfg(test)]
+mod test_p017 {
+    use super::*;
+
+    #[test]
+    fn test_5() {
+        assert_eq!(19, compute(5));
+    }
+
+    #[test]
+    fn test_1000() {
+        assert_eq!(124, compute(1000) % 1000);
+    }
 }
