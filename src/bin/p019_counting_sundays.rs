@@ -13,12 +13,12 @@
 
 // How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 
-use crate::lib::date::{Date, DayOfWeek};
+extern crate date;
+use date::{Date, DayOfWeek};
 
-#[allow(dead_code)]
-pub fn run(first_year: u16, last_year: u16, date: u8, day_of_week: DayOfWeek) -> usize {
+fn compute(first_year: u16, last_year: u16, date: u8, day_of_week: DayOfWeek) -> usize {
     assert!(first_year >= 1900);
-    Date::new()
+    Date::default()
         .skip_while(|d| d.get_year() <= first_year)
         .take_while(|d| d.get_year() <= last_year)
         .filter(|d| d.get_day() == date)
@@ -26,7 +26,18 @@ pub fn run(first_year: u16, last_year: u16, date: u8, day_of_week: DayOfWeek) ->
         .count()
 }
 
-#[test]
-fn test() {
-    assert_eq!(run(1900, 2000, 1, DayOfWeek::Sunday), 171);
+fn main () {
+    println!("p019: {}", compute(1900, 2000, 1, DayOfWeek::Sunday));
+}
+
+
+#[cfg(test)]
+mod test_p019 {
+    use super::*;
+    use date::DayOfWeek;
+
+    #[test]
+    fn test_20th_century() {
+        assert_eq!(71, compute(1900, 2000, 1, DayOfWeek::Sunday) % 100);
+    }
 }
