@@ -5,6 +5,10 @@ name = "collatz_sequence"
 version = "0.1.0"
 
 [[package]]
+name = "date"
+version = "0.1.0"
+
+[[package]]
 name = "fibonacci"
 version = "0.1.0"
 
@@ -25,6 +29,7 @@ name = "rust-euler"
 version = "0.1.0"
 dependencies = [
  "collatz_sequence 0.1.0",
+ "date 0.1.0",
  "fibonacci 0.1.0",
  "path_sum_triangle 0.1.0",
  "prime_factors 0.1.0",
