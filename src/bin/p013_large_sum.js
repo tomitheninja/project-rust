@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 let result = getInput()
   .split("\n")
   .map(x => BigInt(x))
