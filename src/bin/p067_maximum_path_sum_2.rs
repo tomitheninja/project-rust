@@ -1,4 +1,5 @@
-// By starting at the top of the triangle below and moving to adjacent numbers on the row below, the maximum total from top to bottom is 23.
+// By starting at the top of the triangle below and moving to adjacent numbers on the row below,
+// the maximum total from top to bottom is 23.
 
 // 3
 // 7 4
@@ -9,103 +10,40 @@
 
 // Find the maximum total from top to bottom of the triangle below:
 
-// NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
+// NOTE: This is a much more difficult version of Problem 18.
+// It is not possible to try every route to solve this problem, as there are 299 altogether!
+// If you could check one trillion (1012) routes every second it would take over twenty billion years to check them all.
+// There is an efficient algorithm to solve it. ;o)
 
+extern crate path_sum_triangle;
+use path_sum_triangle::triangle::solve;
 
-#[derive(Clone)]
-struct TriangleItem {
-    value: u32,
-    sum_of_children: u32
+fn main() {
+    println!("p067: {}", solve(get_large_triangle()));
 }
 
-impl TriangleItem {
+#[cfg(test)]
+mod test_p067 {
+    use super::*;
+    use path_sum_triangle::triangle::solve;
 
-    fn new (value: u32) -> Self { TriangleItem { value, sum_of_children: 0 } }
-
-    fn sum (&self) -> u32 { self.value + self.sum_of_children }
-
-}
-
-fn parse_triangle_line (triangle_line: &Vec<u32>) -> Vec<TriangleItem> {
-    triangle_line.iter()
-        .map(|&value| TriangleItem::new(value) )
-        .collect()
-}
-
-fn parse_triangle (triangle: &Vec<Vec<u32>>) -> Vec<Vec<TriangleItem>> {
-    let mut result: Vec<Vec<TriangleItem>> = Vec::with_capacity(triangle.capacity());
-
-    for line_index in (0..triangle.len()).rev() {
-        let parsed_line = parse_triangle_line(&triangle[line_index]);
-        result.push(parsed_line);
+    #[test]
+    fn small_triangle() {
+        assert_eq!(23, solve(get_small_triangle()));
     }
-
-    result
-}
-
-fn calculate_sum_of_children (current_line: &Vec<TriangleItem>, children_line: &Vec<TriangleItem>) -> Vec<TriangleItem> {
-    use std::cmp::min;
-
-    // Copy current_line to result
-    let mut result = Vec::with_capacity(current_line.len());
-    for i in 0..current_line.len() {
-        result.push(current_line[i].clone());
+    #[test]
+    fn large_triangle() {
+        assert_eq!(73, solve(get_large_triangle()) % 100);
     }
-    // Solve
-    for i in 0..result.len() {
-        // It's children are: Some(children[i]), Option(children[i + 1])
-        let slice_last_index = min(children_line.len() - 1, i + 1);
-        
-        let sum_of_children = children_line[i..=slice_last_index].iter()
-            .max_by_key(|&child| child.sum())
-            .unwrap()
-            .sum();
-
-        result[i].sum_of_children = sum_of_children;
-    }
-    result
-}
-
-fn get_first_line (v: &Vec<Vec<TriangleItem>>) -> Vec<TriangleItem> {
-    let first_line = &v[0];
-    let mut result: Vec<TriangleItem> = Vec::with_capacity(first_line.len());
-    for x in first_line {
-        result.push(x.clone());
-    }
-    result
-}
-
-// fn print_result (v: &Vec<Vec<TriangleItem>>) {
-//     for line in v.iter().rev() {
-//         for item in line {
-//             print!("({:3}|{:3}|{:4}) ", item.value, item.sum_of_children, item.sum());
-//         }
-//         print!("\n");
-//     }
-//     print!("\n\n");
-// }
-
-#[allow(dead_code)]
-pub fn run () -> u32 {
-    let parsed_triangle = parse_triangle(&get_triangle());
-    let mut results: Vec<Vec<TriangleItem>> = Vec::with_capacity(parsed_triangle.capacity());
-    results.push(get_first_line(&parsed_triangle));
-
-    for i in 1..parsed_triangle.len() {
-        let new_result = calculate_sum_of_children(&parsed_triangle[i], &results[i - 1]);
-        results.push(new_result);
-    }
-
-    results[results.len() - 1][0].sum()
-}
-
-#[test]
-fn test () {
-    assert_eq!(run(), 7273);
 }
 
 #[allow(clippy::all)]
-fn get_triangle () -> Vec<Vec<u32>> {
+fn get_small_triangle() -> Vec<Vec<u32>> {
+    vec![vec![3], vec![7, 4], vec![2, 4, 6], vec![8, 5, 9, 3]]
+}
+
+#[allow(clippy::all)]
+fn get_large_triangle() -> Vec<Vec<u32>> {
     vec![
         vec![59],
         vec![73,41],
