@@ -29,37 +29,37 @@ mod tests {
     use super::Fibonacci;
     #[test]
     fn starts_with_zero() {
-        let f = Fibonacci::new();
+        let f = Fibonacci::default();
         assert_eq!(f.0, 0);
     }
     #[test]
     fn continues_with_one() {
-        let f = Fibonacci::new();
+        let f = Fibonacci::default();
         assert_eq!(f.1, 1);
     }
     #[test]
     fn iterator_stars_with_zero() {
-        let x = Fibonacci::new().nth(0).unwrap();
+        let x = Fibonacci::default().nth(0).unwrap();
         assert_eq!(x, 0);
     }
     #[test]
     fn iterator_first_is_1() {
-        let x = Fibonacci::new().nth(1).unwrap();
+        let x = Fibonacci::default().nth(1).unwrap();
         assert_eq!(x, 1);
     }
     #[test]
     fn iterator_second_is_1() {
-        let x = Fibonacci::new().nth(2).unwrap();
+        let x = Fibonacci::default().nth(2).unwrap();
         assert_eq!(x, 1);
     }
     #[test]
     fn iterator_third_is_2() {
-        let x = Fibonacci::new().nth(3).unwrap();
+        let x = Fibonacci::default().nth(3).unwrap();
         assert_eq!(x, 2);
     }
     #[test]
     fn iterator_forth_is_3() {
-        let x = Fibonacci::new().nth(4).unwrap();
+        let x = Fibonacci::default().nth(4).unwrap();
         assert_eq!(x, 3);
     }
 }

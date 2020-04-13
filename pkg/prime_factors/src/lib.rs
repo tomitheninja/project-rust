@@ -48,7 +48,7 @@ mod test_smallest_prime_factor {
 
     #[test]
     fn a_number_equals_the_product_of_its_prime_factors() {
-        const RANDOM_INT: u32 = 5040;
+        const RANDOM_INT: u64 = 5040;
         assert_eq!(RANDOM_INT, PrimeFactor::new(RANDOM_INT).product());
     }
 }

@@ -30,6 +30,7 @@ fn compute_5() {
     assert_eq!(compute(5), 15);
 }
 
+#[test]
 fn compute_100() {
     assert_eq!(compute(100) % 100, 83);
 }

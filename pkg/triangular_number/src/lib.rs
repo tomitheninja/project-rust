@@ -31,19 +31,19 @@ mod tests_triangular_number {
 
     #[test]
     fn initial_index_is_zero() {
-        assert_eq!(0, TriangleNumber::new().get_index());
+        assert_eq!(0, TriangularNumber::default().get_index());
     }
     #[test]
     fn initial_value_is_zero() {
-        assert_eq!(0, TriangleNumber::new().get_index());
+        assert_eq!(0, TriangularNumber::default().get_index());
     }
     #[test]
     fn index_matches() {
         let index = 10;
-        assert_eq!(index, TriangleNumber::new().nth(index).unwrap().get_index());
+        assert_eq!(index, TriangularNumber::default().nth(index).unwrap().get_index());
     }
     #[test]
     fn test_third() {
-        assert_eq!(0 + 1 + 2 + 3, TriangleNumber::new().nth(3).unwrap().get_value());
+        assert_eq!(0 + 1 + 2 + 3, TriangularNumber::default().nth(3).unwrap().get_value());
     }
 }
