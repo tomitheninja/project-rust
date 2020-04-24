@@ -20,7 +20,9 @@ impl Iterator for PrimeFactor {
             return None;
         }
         let maybe_factor = get_smallest_prime_factor(self.0);
-        if let Some(div) = maybe_factor { self.0 /= div }
+        if let Some(div) = maybe_factor {
+            self.0 /= div
+        }
         maybe_factor
     }
 }

@@ -26,10 +26,9 @@ fn compute(first_year: u16, last_year: u16, date: u8, day_of_week: DayOfWeek) ->
         .count()
 }
 
-fn main () {
+fn main() {
     println!("p019: {}", compute(1900, 2000, 1, DayOfWeek::Sunday));
 }
-
 
 #[cfg(test)]
 mod test_p019 {

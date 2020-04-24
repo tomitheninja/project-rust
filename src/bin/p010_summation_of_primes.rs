@@ -10,9 +10,7 @@ use prime_table::get_prime_table;
 fn compute(bound: usize) -> u64 {
     let is_prime = get_prime_table(bound);
 
-    (0..bound)
-        .filter(|i| is_prime[*i])
-        .sum::<usize>() as u64
+    (0..bound).filter(|i| is_prime[*i]).sum::<usize>() as u64
 }
 
 fn main() {

@@ -5,7 +5,6 @@ pub struct TriangularNumber {
 }
 
 impl TriangularNumber {
-
     pub fn get_index(&self) -> usize {
         self.index
     }
@@ -40,10 +39,16 @@ mod tests_triangular_number {
     #[test]
     fn index_matches() {
         let index = 10;
-        assert_eq!(index, TriangularNumber::default().nth(index).unwrap().get_index());
+        assert_eq!(
+            index,
+            TriangularNumber::default().nth(index).unwrap().get_index()
+        );
     }
     #[test]
     fn test_third() {
-        assert_eq!(0 + 1 + 2 + 3, TriangularNumber::default().nth(3).unwrap().get_value());
+        assert_eq!(
+            0 + 1 + 2 + 3,
+            TriangularNumber::default().nth(3).unwrap().get_value()
+        );
     }
 }

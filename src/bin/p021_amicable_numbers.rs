@@ -45,7 +45,7 @@ mod test_sum {
     use super::*;
 
     #[test]
-    fn below_10_000 () {
+    fn below_10_000() {
         assert_eq!(626, compute(10_000) % 1000);
     }
 }

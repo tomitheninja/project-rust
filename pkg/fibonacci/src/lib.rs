@@ -1,7 +1,6 @@
 pub struct Fibonacci(u32, u32);
 
 impl Fibonacci {
-
     fn get_next_pair(&self) -> Self {
         Fibonacci(self.1, self.0 + self.1)
     }

@@ -42,6 +42,7 @@ mod test_p067 {
 }
 
 #[allow(clippy::all)]
+#[rustfmt::skip]
 fn get_large_triangle() -> Vec<Vec<u32>> {
     vec![
         vec![59],

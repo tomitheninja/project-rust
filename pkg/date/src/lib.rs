@@ -1,4 +1,3 @@
-
 // I should have used int-s...
 
 #[derive(PartialEq, Eq, Copy, Clone, Debug)]
