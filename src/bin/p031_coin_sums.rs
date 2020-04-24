@@ -7,41 +7,37 @@
 //     1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
 // How many different ways can £2 be made using any number of coins?
 
-fn solve(amount_to_pay: u32, current_coin_id: usize) -> Result<usize, &'static str> {
-    let coins: Vec<u32> = vec![200, 100, 50, 20, 10, 5, 2, 1];
+static COINS: [u32; 8] = [200, 100, 50, 20, 10, 5, 2, 1];
 
-    // Base case 1 (stupid user): Nothing to pay for
+fn solve(amount_to_pay: u32, current_coin_id: usize) -> Result<usize, &'static str> {
+    // Base case 1 (Nothing to pay for):
     if amount_to_pay == 0 {
         return Err("Nothing to pay for");
     }
 
     // Base case 2 (payment failure): No more coins left -> wrong path
-    if current_coin_id >= coins.len() {
+    if current_coin_id >= COINS.len() {
         return Err("Unable pay this amount with the remaining coins");
     }
 
-    let coin_value: u32 = coins[current_coin_id];
+    let coin_value = COINS[current_coin_id];
     let max_usable_coins = amount_to_pay / coin_value;
 
-    let mut sum = 0;
+    let result = (0..=max_usable_coins)
+        .map(|num_used_coins| {
+            let paid_amount = num_used_coins * coin_value;
+            let remaining_amount = amount_to_pay - paid_amount;
+            if remaining_amount == 0 {
+                // Base case 3 (paid)
+                1
+            } else {
+                // pay the remaining with smaller coins
+                solve(remaining_amount, current_coin_id + 1).unwrap_or(0)
+            }
+        })
+        .sum();
 
-    for num_used_coins in 0..=max_usable_coins {
-        // amount paid using this coin type
-        let paid_amount = num_used_coins * coin_value;
-
-        let remaining_amount = amount_to_pay - paid_amount;
-
-        // Base case 3 (paid):
-        sum += if remaining_amount == 0 {
-            // Base case 3 (paid)
-            1
-        } else {
-            // pay the remaining with smaller coins
-            solve(remaining_amount, current_coin_id + 1).unwrap_or(0)
-        }
-    }
-
-    return Ok(sum);
+    Ok(result)
 }
 
 fn main() {
