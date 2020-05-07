@@ -1,0 +1,16 @@
+[package]
+name = "problems"
+version = "0.1.0"
+authors = ["Südi Tamás <suditomi@pm.me>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+collatz_sequence = { path = "../collatz_sequence" }
+date = { path = "../date" }
+fibonacci_sequence = { path = "../fibonacci_sequence" }
+find_primes = { path = "../find_primes" }
+path_sum_triangle = { path = "../path_sum_triangle" }
+prime_factors = { path = "../prime_factors" }
+triangular_number_sequence = { path = "../triangular_number_sequence" }

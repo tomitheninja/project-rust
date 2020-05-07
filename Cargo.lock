@@ -9,7 +9,11 @@ name = "date"
 version = "0.1.0"
 
 [[package]]
-name = "fibonacci"
+name = "fibonacci_sequence"
+version = "0.1.0"
+
+[[package]]
+name = "find_primes"
 version = "0.1.0"
 
 [[package]]
@@ -21,23 +25,19 @@ name = "prime_factors"
 version = "0.1.0"
 
 [[package]]
-name = "prime_table"
-version = "0.1.0"
-
-[[package]]
-name = "rust-euler"
+name = "problems"
 version = "0.1.0"
 dependencies = [
  "collatz_sequence 0.1.0",
  "date 0.1.0",
- "fibonacci 0.1.0",
+ "fibonacci_sequence 0.1.0",
+ "find_primes 0.1.0",
  "path_sum_triangle 0.1.0",
  "prime_factors 0.1.0",
- "prime_table 0.1.0",
- "triangular_number 0.1.0",
+ "triangular_number_sequence 0.1.0",
 ]
 
 [[package]]
-name = "triangular_number"
+name = "triangular_number_sequence"
 version = "0.1.0"
 

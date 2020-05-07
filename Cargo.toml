@@ -1,30 +1,16 @@
-[package]
-name = "rust-euler"
-version = "0.1.0"
-authors = ["tomitheninja <suditomi@pm.me>"]
-edition = "2018"
+[workspace]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+members = [
+    "collatz_sequence",
+    "date",
+    "fibonacci_sequence",
+    "find_primes",
+    "path_sum_triangle",
+    "prime_factors",
+    "triangular_number_sequence",
+    "problems"
+]
 
-[dependencies]
-
-[dependencies.fibonacci]
-path = "./pkg/fibonacci/"
-
-[dependencies.prime_factors]
-path = "./pkg/prime_factors/"
-
-[dependencies.prime_table]
-path = "./pkg/prime_table/"
-
-[dependencies.triangular_number]
-path = "./pkg/triangular_number/"
-
-[dependencies.collatz_sequence]
-path = "./pkg/collatz_sequence/"
-
-[dependencies.path_sum_triangle]
-path = "./pkg/path_sum_triangle/"
-
-[dependencies.date]
-path = "./pkg/date/"
+default-members = [
+    "problems"
+]
