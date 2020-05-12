@@ -16,6 +16,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "p003"
+version = "0.1.0"
+dependencies = [
+ "primes 0.1.0",
+]
+
+[[package]]
 name = "primes"
 version = "0.1.0"
 
