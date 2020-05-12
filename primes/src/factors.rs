@@ -19,12 +19,14 @@ pub fn prime_factors(n: u64) -> Vec<u64> {
 
 struct PrimeFactors {
     remaining_value: u64,
+    largest_factor: u64,
 }
 
 impl PrimeFactors {
     pub fn new(value: u64) -> Self {
         PrimeFactors {
             remaining_value: value,
+            largest_factor: 2,
         }
     }
 }
@@ -33,7 +35,8 @@ impl Iterator for PrimeFactors {
     type Item = u64;
 
     fn next(&mut self) -> Option<Self::Item> {
-        let result = (2..=self.remaining_value).find(|&x| self.remaining_value % x == 0);
+        let result =
+            (self.largest_factor..=self.remaining_value).find(|&x| self.remaining_value % x == 0);
         if let Some(factor) = result {
             self.remaining_value /= factor;
         }
