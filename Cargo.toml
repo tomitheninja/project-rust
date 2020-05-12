@@ -1,6 +1,7 @@
 [workspace]
 members = [
     "fibonacci-sequence",
+    "primes",
     "p001",
-    "p002"
+    "p002",
 ]

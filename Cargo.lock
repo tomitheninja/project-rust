@@ -15,3 +15,7 @@ dependencies = [
  "fibonacci-sequence 0.1.0",
 ]
 
+[[package]]
+name = "primes"
+version = "0.1.0"
+
