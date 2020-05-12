@@ -8,3 +8,10 @@ version = "0.1.0"
 name = "p001"
 version = "0.1.0"
 
+[[package]]
+name = "p002"
+version = "0.1.0"
+dependencies = [
+ "fibonacci-sequence 0.1.0",
+]
+
