@@ -2,6 +2,7 @@
 members = [
     "fibonacci-sequence",
     "primes",
+    "is-palindrome",
     "p001",
     "p002",
     "p003"

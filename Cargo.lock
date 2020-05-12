@@ -5,6 +5,10 @@ name = "fibonacci-sequence"
 version = "0.1.0"
 
 [[package]]
+name = "is-palindrome"
+version = "0.1.0"
+
+[[package]]
 name = "p001"
 version = "0.1.0"
 
