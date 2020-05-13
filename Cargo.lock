@@ -34,11 +34,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "p004_multithread"
+name = "p005"
 version = "0.1.0"
-dependencies = [
- "is-palindrome 0.1.0",
-]
 
 [[package]]
 name = "primes"
