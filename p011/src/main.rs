@@ -45,31 +45,37 @@ fn main() {
 
 fn solve(window: usize) -> u64 {
     let data = get_data();
-    let mut largest_product = 1;
+    let mut res = 1;
     for p1 in 0..data.len() - window {
         for p2 in 0..data.len() - window {
-            let mut product_right = 1;
-            let mut product_down = 1;
-            let mut product_downright = 1;
-            let mut product_upright = 1;
-
-            for i in 0..window {
-                product_right *= data[p1][p2 + i] as u64;
-                product_down *= data[p2 + i][p1] as u64;
-                product_downright *= data[p1 + i][p2 + i] as u64;
-                if p2 > window {
-                    product_upright *= data[p1 + i][p2 - i] as u64;
-                }
-            }
-
-            largest_product = largest_product
-                .max(product_right)
-                .max(product_down)
-                .max(product_downright)
-                .max(product_upright);
+            res = res.max(max_product_of_window(&data, window, (p1, p2)));
         }
     }
-    largest_product
+    res
+}
+
+fn max_product_of_window(data: &Vec<Vec<u8>>, window: usize, (p1, p2): (usize, usize)) -> u64 {
+    assert!(window > 0);
+    assert!(data.len() > p2 + window);
+    assert!(data[0].len() > p1 + window);
+
+    let mut product_right = 1;
+    let mut product_down = 1;
+    let mut product_downright = 1;
+    let mut product_upright = 1;
+
+    for wi in 0..window {
+        product_right *= data[p1][p2 + wi] as u64;
+        product_down *= data[p2 + wi][p1] as u64;
+        product_downright *= data[p1 + wi][p2 + wi] as u64;
+        if p2 > window {
+            product_upright *= data[p1 + wi][p2 - wi] as u64;
+        }
+    }
+    product_right
+        .max(product_down)
+        .max(product_downright)
+        .max(product_upright)
 }
 
 #[cfg(test)]
