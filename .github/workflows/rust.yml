@@ -23,5 +23,5 @@ jobs:
         run: cargo test --verbose
 
       - name: Run tests (production)
-        if: ${{ matrix.os=ubuntu-latest }}
+        if: ${{ matrix.os = ubuntu-latest }}
         run: cargo tests --release --no-run && time cargo tests --release
