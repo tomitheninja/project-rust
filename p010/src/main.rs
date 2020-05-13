@@ -5,17 +5,15 @@
 extern crate primes;
 
 fn main() {
-    println!("{}", solve(10));
+    println!("{}", solve(2_000_000));
 }
 
 /// Sum of primes below `n`
 fn solve(n: usize) -> u64 {
-    primes::sieve_of_eratosthenes(n)
-        .iter()
-        .zip(0..)
-        .filter(|(&is_prime, _)| is_prime)
-        .map(|(_, i)| i as u64)
-        .sum::<u64>()
+    primes::sieve_of_eratosthenes::collected(n)
+        .into_iter()
+        .map(|x| x as u64)
+        .sum()
 }
 
 #[cfg(test)]

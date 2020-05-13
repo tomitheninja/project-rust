@@ -23,7 +23,7 @@ dependencies = [
 name = "p003"
 version = "0.1.0"
 dependencies = [
- "primes 0.2.0",
+ "primes 1.0.0",
 ]
 
 [[package]]
@@ -45,7 +45,7 @@ version = "0.1.0"
 name = "p007"
 version = "0.1.0"
 dependencies = [
- "primes 0.2.0",
+ "primes 1.0.0",
 ]
 
 [[package]]
@@ -60,10 +60,10 @@ version = "0.1.0"
 name = "p010"
 version = "0.1.0"
 dependencies = [
- "primes 0.2.0",
+ "primes 1.0.0",
 ]
 
 [[package]]
 name = "primes"
-version = "0.2.0"
+version = "1.0.0"
 

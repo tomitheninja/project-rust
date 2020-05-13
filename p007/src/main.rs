@@ -18,16 +18,12 @@ fn get_vector_size(n: usize) -> usize {
     }
 }
 
+/// returns the n-th prime number
 fn solve(n: usize) -> usize {
-    assert!(n != 0);
-    let is_prime = primes::sieve_of_eratosthenes(get_vector_size(n));
-    is_prime
-        .iter()
-        .enumerate()
-        .filter(|(_, &val)| val)
-        .map(|(i, _)| i)
-        .nth(n - 1)
-        .unwrap()
+    assert!(n > 0, "n must be positive");
+    let primes = primes::sieve_of_eratosthenes::collected(get_vector_size(n));
+    assert!(primes.len() > n - 1, "Failed to estimate the vector size");
+    primes[n - 1]
 }
 
 #[cfg(test)]
