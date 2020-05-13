@@ -38,6 +38,10 @@ name = "p005"
 version = "0.1.0"
 
 [[package]]
+name = "p006"
+version = "0.1.0"
+
+[[package]]
 name = "primes"
 version = "0.1.0"
 
