@@ -3,6 +3,7 @@ members = [
     "fibonacci-sequence",
     "primes",
     "is-palindrome",
+    "triangular-number",
     "p001",
     "p002",
     "p003",

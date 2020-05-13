@@ -71,3 +71,7 @@ version = "0.1.0"
 name = "primes"
 version = "1.0.0"
 
+[[package]]
+name = "triangular-number"
+version = "0.1.0"
+
