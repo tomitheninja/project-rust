@@ -75,6 +75,14 @@ name = "p011"
 version = "0.1.0"
 
 [[package]]
+name = "p012"
+version = "0.1.0"
+dependencies = [
+ "factors 0.1.0",
+ "triangular-number 0.1.0",
+]
+
+[[package]]
 name = "primes"
 version = "1.0.0"
 
