@@ -1,8 +1,9 @@
 [workspace]
 members = [
+    "factors",
     "fibonacci-sequence",
-    "primes",
     "is-palindrome",
+    "primes",
     "triangular-number",
     "p001",
     "p002",
